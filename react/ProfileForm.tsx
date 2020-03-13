@@ -35,7 +35,8 @@ const ProfileForm: React.FC = () => {
   const [optinNewsletter, setOptinNewsletter] = useState(false)
 
   const [fullName, setFullName] = useState(() =>
-    orderForm.clientProfileData
+    orderForm.clientProfileData?.firstName &&
+    orderForm.clientProfileData?.lastName
       ? `${orderForm.clientProfileData.firstName} ${orderForm.clientProfileData.lastName}`
       : ''
   )
