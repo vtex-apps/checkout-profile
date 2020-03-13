@@ -23,7 +23,7 @@ const PHONE_OPTIONS = [
   },
 ]
 
-const Profile: React.FC = () => {
+const ProfileForm: React.FC = () => {
   const { orderForm } = OrderForm.useOrderForm()
 
   const [documentType, setDocumentType] = useState('cpf')
@@ -91,4 +91,4 @@ const Profile: React.FC = () => {
   )
 }
 
-export default Profile
+export default ProfileForm
