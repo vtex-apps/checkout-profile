@@ -9,6 +9,9 @@
   "devDependencies": {
     "@types/node": "^13.9.0",
     "@types/react": "^16.9.23",
-    "vtex.render-runtime": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.render-runtime@8.95.1/public/@types/vtex.render-runtime"
+    "vtex.order-manager": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.order-manager@0.8.2/public/@types/vtex.order-manager",
+    "vtex.order-profile": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.order-profile@0.1.1/public/@types/vtex.order-profile",
+    "vtex.render-runtime": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.render-runtime@8.95.1/public/@types/vtex.render-runtime",
+    "vtex.styleguide": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.styleguide@9.112.15/public/@types/vtex.styleguide"
   }
 }
