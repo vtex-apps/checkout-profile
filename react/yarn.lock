@@ -77,6 +77,6 @@ react@^16.13.0:
   version "8.95.1"
   resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.render-runtime@8.95.1/public/@types/vtex.render-runtime#3aae291d0cd239d3059ea8ae8c3c2800ce36d22f"
 
-"vtex.styleguide@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.styleguide@9.112.15/public/@types/vtex.styleguide":
-  version "9.112.15"
-  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.styleguide@9.112.15/public/@types/vtex.styleguide#1859832d974e0b0b82dff8ed086f005907058dda"
+"vtex.styleguide@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.styleguide@9.112.17/public/@types/vtex.styleguide":
+  version "9.112.17"
+  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.styleguide@9.112.17/public/@types/vtex.styleguide#ce9d7673cf87c5b065b183294957de74d94edb9a"
