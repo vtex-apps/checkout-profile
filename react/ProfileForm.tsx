@@ -46,7 +46,7 @@ const profileReducer = (
 
 const ProfileForm: React.FC = () => {
   const { orderForm } = OrderForm.useOrderForm()
-  const { navigate } = useRuntime()
+  const { navigate, query } = useRuntime()
 
   const [persistInfo, setPersistInfo] = useState(false)
   const [optinNewsletter, setOptinNewsletter] = useState(false)
@@ -62,7 +62,7 @@ const ProfileForm: React.FC = () => {
     document: orderForm.clientProfileData?.document ?? '',
   })
 
-  const email = useRef(orderForm.clientProfileData?.email)
+  const email = useRef(orderForm.clientProfileData?.email ?? query.email)
 
   const handleEditEmail = useCallback(() => {
     navigate({ page: 'store.checkout.identification' })
