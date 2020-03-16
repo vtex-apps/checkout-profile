@@ -1,0 +1,10 @@
+{
+  "store/checkout-profile-email-info": "Preencher informações para",
+  "store/checkout-profile-first-name-label": "Nome",
+  "store/checkout-profile-last-name-label": "Sobrenome",
+  "store/checkout-profile-phone-label": "Número de telefone",
+  "store/checkout-profile-document-label": "Documento",
+  "store/checkout-profile-save-info-label": "Salvar minhas informações para compras futuras.",
+  "store/checkout-profile-newsletter-optin-label": "Quero receber email promocionais.",
+  "store/checkout-profile-continue-button-label": "Continuar"
+}

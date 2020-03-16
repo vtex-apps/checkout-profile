@@ -4,7 +4,8 @@
   "private": true,
   "license": "UNLICENSED",
   "dependencies": {
-    "react": "^16.13.0"
+    "react": "^16.13.0",
+    "react-intl": "^3.12.1"
   },
   "devDependencies": {
     "@types/node": "^13.9.0",

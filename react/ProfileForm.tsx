@@ -1,4 +1,5 @@
 import React, { useState, useCallback, useRef, useReducer } from 'react'
+import { defineMessages, useIntl } from 'react-intl'
 import { OrderForm } from 'vtex.order-manager'
 import {
   Input,
@@ -26,6 +27,33 @@ const PHONE_OPTIONS = PHONE_COUNTRY_CODES.map(
   })
 )
 
+const messages = defineMessages({
+  emailInfo: {
+    id: 'store/checkout-profile-email-info',
+  },
+  firstNameLabel: {
+    id: 'store/checkout-profile-first-name-label',
+  },
+  lastNameLabel: {
+    id: 'store/checkout-profile-last-name-label',
+  },
+  phoneLabel: {
+    id: 'store/checkout-profile-phone-label',
+  },
+  documentLabel: {
+    id: 'store/checkout-profile-document-label',
+  },
+  saveInfoLabel: {
+    id: 'store/checkout-profile-save-info-label',
+  },
+  newsletterOptinLabel: {
+    id: 'store/checkout-profile-newsletter-optin-label',
+  },
+  continueButtonLabel: {
+    id: 'store/checkout-profile-continue-button-label',
+  },
+})
+
 interface ProfileState {
   firstName: string
   lastName: string
@@ -46,7 +74,8 @@ const profileReducer = (
 
 const ProfileForm: React.FC = () => {
   const { orderForm } = OrderForm.useOrderForm()
-  const { navigate, query } = useRuntime()
+  const { navigate } = useRuntime()
+  const intl = useIntl()
 
   const [persistInfo, setPersistInfo] = useState(false)
   const [optinNewsletter, setOptinNewsletter] = useState(false)
@@ -62,7 +91,7 @@ const ProfileForm: React.FC = () => {
     document: orderForm.clientProfileData?.document ?? '',
   })
 
-  const email = useRef(orderForm.clientProfileData?.email ?? query.email)
+  const email = useRef(orderForm.clientProfileData?.email)
 
   const handleEditEmail = useCallback(() => {
     navigate({ page: 'store.checkout.identification' })
@@ -86,7 +115,7 @@ const ProfileForm: React.FC = () => {
     <>
       <div>
         <span className="t-body fw6 flex items-center">
-          Fill info for{' '}
+          {intl.formatMessage(messages.emailInfo)}{' '}
           <div className="dib ml4">
             <ButtonPlain onClick={handleEditEmail}>
               <IconEdit solid />
@@ -99,7 +128,7 @@ const ProfileForm: React.FC = () => {
         <div className="flex flex-column flex-row-ns">
           <div className="w-100">
             <Input
-              label="First name"
+              label={intl.formatMessage(messages.firstNameLabel)}
               name="firstName"
               value={profileData.firstName}
               onChange={handleChange}
@@ -107,7 +136,7 @@ const ProfileForm: React.FC = () => {
           </div>
           <div className="w-100 mt6 mt0-ns ml0 ml5-ns">
             <Input
-              label="Last name"
+              label={intl.formatMessage(messages.lastNameLabel)}
               name="lastName"
               value={profileData.lastName}
               onChange={handleChange}
@@ -125,7 +154,7 @@ const ProfileForm: React.FC = () => {
                   onChange={handleChange}
                 />
               }
-              label="Phone number"
+              label={intl.formatMessage(messages.phoneLabel)}
               name="phoneNumber"
               value={profileData.phoneNumber}
               onChange={handleChange}
@@ -141,7 +170,7 @@ const ProfileForm: React.FC = () => {
                   onChange={handleChange}
                 />
               }
-              label="Document"
+              label={intl.formatMessage(messages.documentLabel)}
               name="document"
               value={profileData.document}
               onChange={handleChange}
@@ -149,21 +178,23 @@ const ProfileForm: React.FC = () => {
           </div>
         </div>
         <div className="mv7">
-          <Checkbox
-            label="Save my info for future purchases."
-            checked={persistInfo}
-            onChange={handlePersistInfoChange}
-          />
+          {orderForm.userProfileId == null && (
+            <Checkbox
+              label={intl.formatMessage(messages.saveInfoLabel)}
+              checked={persistInfo}
+              onChange={handlePersistInfoChange}
+            />
+          )}
           <div className="mt6">
             <Checkbox
-              label="I want to receive the newsletter."
+              label={intl.formatMessage(messages.newsletterOptinLabel)}
               checked={optinNewsletter}
               onChange={handleOptinNewsletterChange}
             />
           </div>
         </div>
         <Button size="large" block>
-          Continue
+          {intl.formatMessage(messages.continueButtonLabel)}
         </Button>
       </form>
     </>
