@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react'
+import React, { useState, useCallback, useRef, useReducer } from 'react'
 import { OrderForm } from 'vtex.order-manager'
 import {
   Input,
@@ -10,6 +10,8 @@ import {
 } from 'vtex.styleguide'
 import { useRuntime } from 'vtex.render-runtime'
 
+import { PHONE_COUNTRY_CODES } from './modules/countries'
+
 const DOCUMENT_OPTIONS = [
   {
     value: 'cpf',
@@ -17,35 +19,50 @@ const DOCUMENT_OPTIONS = [
   },
 ]
 
-const PHONE_OPTIONS = [
-  {
-    value: 'BRA',
-    label: '+55',
-  },
-]
+const PHONE_OPTIONS = PHONE_COUNTRY_CODES.map(
+  ({ countryCode, countryISO3 }) => ({
+    label: `+${countryCode}`,
+    value: countryISO3,
+  })
+)
+
+interface ProfileState {
+  firstName: string
+  lastName: string
+  phoneCode: string
+  phoneNumber: string
+  documentType: string
+  document: string
+}
+
+type ProfileAction = { [field in keyof ProfileState]?: string }
+
+const profileReducer = (
+  profile: ProfileState,
+  action: ProfileAction
+): ProfileState => {
+  return { ...profile, ...action }
+}
 
 const ProfileForm: React.FC = () => {
   const { orderForm } = OrderForm.useOrderForm()
   const { navigate } = useRuntime()
 
-  const [documentType, setDocumentType] = useState('cpf')
-  const [phoneCode, setPhoneCode] = useState('BRA')
-
   const [persistInfo, setPersistInfo] = useState(false)
   const [optinNewsletter, setOptinNewsletter] = useState(false)
 
-  const [fullName, setFullName] = useState(() =>
-    orderForm.clientProfileData?.firstName &&
-    orderForm.clientProfileData?.lastName
-      ? `${orderForm.clientProfileData.firstName} ${orderForm.clientProfileData.lastName}`
-      : ''
-  )
-  const [phoneNumber, setPhoneNumber] = useState(
-    orderForm.clientProfileData?.phone ?? ''
-  )
-  const [document, setDocument] = useState(
-    orderForm.clientProfileData?.document ?? ''
-  )
+  const [profileData, setProfileData] = useReducer<
+    React.Reducer<ProfileState, ProfileAction>
+  >(profileReducer, {
+    firstName: orderForm.clientProfileData?.firstName ?? '',
+    lastName: orderForm.clientProfileData?.lastName ?? '',
+    phoneCode: 'BRA',
+    phoneNumber: orderForm.clientProfileData?.phone ?? '',
+    documentType: 'cpf',
+    document: orderForm.clientProfileData?.document ?? '',
+  })
+
+  const email = useRef(orderForm.clientProfileData?.email)
 
   const handleEditEmail = useCallback(() => {
     navigate({ page: 'store.checkout.identification' })
@@ -59,30 +76,16 @@ const ProfileForm: React.FC = () => {
     setOptinNewsletter(evt.target.checked)
   }
 
-  const handleFullNameChange: React.ChangeEventHandler<HTMLInputElement> = evt => {
-    setFullName(evt.target.value)
-  }
-
-  const handlePhoneCodeChange: React.ChangeEventHandler<HTMLSelectElement> = evt => {
-    setPhoneCode(evt.target.value)
-  }
-
-  const handleDocumentTypeChange: React.ChangeEventHandler<HTMLSelectElement> = evt => {
-    setDocumentType(evt.target.value)
-  }
-
-  const handleDocumentChange: React.ChangeEventHandler<HTMLInputElement> = evt => {
-    setDocument(evt.target.value)
-  }
-
-  const handlePhoneNumberChange: React.ChangeEventHandler<HTMLInputElement> = evt => {
-    setPhoneNumber(evt.target.value)
+  const handleChange: React.ChangeEventHandler<HTMLInputElement> = evt => {
+    setProfileData({
+      [evt.target.name]: evt.target.value,
+    })
   }
 
   return (
     <>
       <div>
-        <span className="t-body b flex items-center">
+        <span className="t-body fw6 flex items-center">
           Fill info for{' '}
           <div className="dib ml4">
             <ButtonPlain onClick={handleEditEmail}>
@@ -90,41 +93,58 @@ const ProfileForm: React.FC = () => {
             </ButtonPlain>
           </div>
         </span>
-        <span className="dib mt3">{orderForm.clientProfileData.email}</span>
+        <span className="dib mt3">{email.current}</span>
       </div>
       <form className="mt6">
-        <Input
-          label="Full name"
-          value={fullName}
-          onChange={handleFullNameChange}
-        />
+        <div className="flex flex-column flex-row-ns">
+          <div className="w-100">
+            <Input
+              label="First name"
+              name="firstName"
+              value={profileData.firstName}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="w-100 mt6 mt0-ns ml0 ml5-ns">
+            <Input
+              label="Last name"
+              name="lastName"
+              value={profileData.lastName}
+              onChange={handleChange}
+            />
+          </div>
+        </div>
         <div className="flex flex-column flex-row-ns mt6">
           <div className="w-100">
             <Input
               prefix={
                 <Dropdown
                   options={PHONE_OPTIONS}
-                  value={phoneCode}
-                  onChange={handlePhoneCodeChange}
+                  value={profileData.phoneCode}
+                  name="phoneCode"
+                  onChange={handleChange}
                 />
               }
               label="Phone number"
-              value={phoneNumber}
-              onChange={handlePhoneNumberChange}
+              name="phoneNumber"
+              value={profileData.phoneNumber}
+              onChange={handleChange}
             />
           </div>
-          <div className="w-100 ml0 ml5-ns">
+          <div className="w-100 mt6 mt0-ns ml0 ml5-ns">
             <Input
               prefix={
                 <Dropdown
                   options={DOCUMENT_OPTIONS}
-                  value={documentType}
-                  onChange={handleDocumentTypeChange}
+                  value={profileData.documentType}
+                  name="documentType"
+                  onChange={handleChange}
                 />
               }
               label="Document"
-              value={document}
-              onChange={handleDocumentChange}
+              name="document"
+              value={profileData.document}
+              onChange={handleChange}
             />
           </div>
         </div>
