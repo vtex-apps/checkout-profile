@@ -11,8 +11,7 @@ import {
   Dropdown,
 } from 'vtex.styleguide'
 import { useRuntime } from 'vtex.render-runtime'
-
-import { PHONE_COUNTRY_CODES } from './modules/countries'
+import { PhoneField, PhoneContext, rules } from 'vtex.phone-field'
 
 const DOCUMENT_OPTIONS = [
   {
@@ -20,13 +19,6 @@ const DOCUMENT_OPTIONS = [
     label: 'CPF',
   },
 ]
-
-const PHONE_OPTIONS = PHONE_COUNTRY_CODES.map(
-  ({ countryCode, countryISO3 }) => ({
-    label: `+${countryCode}`,
-    value: countryISO3,
-  })
-)
 
 const messages = defineMessages({
   emailInfo: {
@@ -186,10 +178,23 @@ const ProfileForm: React.FC = () => {
     setLoading(false)
 
     if (success) {
-      console.log('yay')
-    } else {
-      console.log('non')
+      // yay
     }
+  }
+
+  const handlePhoneChange = ({
+    value,
+    isValid,
+  }: {
+    value: string
+    isValid: boolean
+  }) => {
+    dispatch({
+      type: 'update',
+      field: 'phone',
+      value,
+      isValid,
+    })
   }
 
   return (
@@ -230,20 +235,13 @@ const ProfileForm: React.FC = () => {
         </div>
         <div className="flex flex-column flex-row-ns mt6">
           <div className="w-100">
-            <Input
-              prefix={
-                <Dropdown
-                  options={PHONE_OPTIONS}
-                  value={profileData.phoneCode}
-                  name="phoneCode"
-                  onChange={handleChange}
-                />
-              }
-              label={intl.formatMessage(messages.phoneLabel)}
-              name="phoneNumber"
-              value={profileData.phoneNumber}
-              onChange={handleChange}
-            />
+            <PhoneContext.PhoneContextProvider rules={rules}>
+              <PhoneField
+                label={intl.formatMessage(messages.phoneLabel)}
+                value={profileData.phone.value}
+                onChange={handlePhoneChange}
+              />
+            </PhoneContext.PhoneContextProvider>
           </div>
           <div className="w-100 mt6 mt0-ns ml0 ml5-ns">
             <Input

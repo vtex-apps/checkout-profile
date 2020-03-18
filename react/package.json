@@ -12,7 +12,8 @@
     "@types/react": "^16.9.23",
     "vtex.order-manager": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.order-manager@0.8.2/public/@types/vtex.order-manager",
     "vtex.order-profile": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.order-profile@0.1.1/public/@types/vtex.order-profile",
+    "vtex.phone-field": "https://lucas--checkoutio.myvtex.com/_v/private/typings/linked/v1/vtex.phone-field@0.0.0+build1584480511/public/@types/vtex.phone-field",
     "vtex.render-runtime": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.render-runtime@8.95.1/public/@types/vtex.render-runtime",
-    "vtex.styleguide": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.styleguide@9.112.17/public/@types/vtex.styleguide"
+    "vtex.styleguide": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.styleguide@9.112.20/public/@types/vtex.styleguide"
   }
 }
