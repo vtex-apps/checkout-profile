@@ -1,6 +1,7 @@
 import React, { useState, useCallback, useRef, useReducer } from 'react'
 import { defineMessages, useIntl } from 'react-intl'
 import { OrderForm } from 'vtex.order-manager'
+import { OrderProfile } from 'vtex.order-profile'
 import {
   Input,
   Checkbox,
@@ -54,41 +55,64 @@ const messages = defineMessages({
   },
 })
 
-interface ProfileState {
-  firstName: string
-  lastName: string
-  phoneCode: string
-  phoneNumber: string
-  documentType: string
-  document: string
+type FieldState<T> = { value: T; error?: string; isValid?: boolean }
+
+type ProfileState = {
+  firstName: FieldState<string>
+  lastName: FieldState<string>
+  phone: FieldState<string>
+  documentType: FieldState<string>
+  document: FieldState<string>
 }
 
-type ProfileAction = { [field in keyof ProfileState]?: string }
+type ProfileAction = {
+  type: 'update'
+  field: keyof ProfileState
+  value?: string
+  error?: string
+  isValid?: boolean
+}
 
 const profileReducer = (
   profile: ProfileState,
   action: ProfileAction
 ): ProfileState => {
-  return { ...profile, ...action }
+  switch (action.type) {
+    case 'update': {
+      const { field, type, ...fieldData } = action
+      return {
+        ...profile,
+        [action.field]: {
+          ...profile[action.field],
+          ...fieldData,
+        },
+      }
+    }
+    default: {
+      return profile
+    }
+  }
 }
 
 const ProfileForm: React.FC = () => {
   const { orderForm } = OrderForm.useOrderForm()
+  const { setOrderProfile } = OrderProfile.useOrderProfile()
   const { navigate } = useRuntime()
   const intl = useIntl()
+
+  const [loading, setLoading] = useState(false)
 
   const [persistInfo, setPersistInfo] = useState(false)
   const [optinNewsletter, setOptinNewsletter] = useState(false)
 
-  const [profileData, setProfileData] = useReducer<
+  const [profileData, dispatch] = useReducer<
     React.Reducer<ProfileState, ProfileAction>
   >(profileReducer, {
-    firstName: orderForm.clientProfileData?.firstName ?? '',
-    lastName: orderForm.clientProfileData?.lastName ?? '',
-    phoneCode: 'BRA',
-    phoneNumber: orderForm.clientProfileData?.phone ?? '',
-    documentType: 'cpf',
-    document: orderForm.clientProfileData?.document ?? '',
+    firstName: { value: orderForm.clientProfileData?.firstName ?? '' },
+    lastName: { value: orderForm.clientProfileData?.lastName ?? '' },
+    phone: { value: orderForm.clientProfileData?.phone ?? '' },
+    documentType: { value: 'cpf' },
+    document: { value: orderForm.clientProfileData?.document ?? '' },
   })
 
   const email = useRef(orderForm.clientProfileData?.email)
@@ -106,9 +130,66 @@ const ProfileForm: React.FC = () => {
   }
 
   const handleChange: React.ChangeEventHandler<HTMLInputElement> = evt => {
-    setProfileData({
-      [evt.target.name]: evt.target.value,
+    dispatch({
+      type: 'update',
+      field: evt.target.name as keyof ProfileState,
+      value: evt.target.value,
     })
+  }
+
+  const validateField = useCallback(
+    (name: keyof ProfileState, value: string) => {
+      if (!value) {
+        dispatch({
+          type: 'update',
+          field: name,
+          isValid: false,
+          error: 'Field is required',
+        })
+      } else {
+        dispatch({
+          type: 'update',
+          field: name,
+          isValid: true,
+          error: undefined,
+        })
+      }
+    },
+    []
+  )
+
+  const handleBlur: React.FocusEventHandler<HTMLInputElement> = evt => {
+    validateField(evt.target.name as keyof ProfileState, evt.target.value)
+  }
+
+  const handleSubmit: React.FormEventHandler<HTMLFormElement> = async evt => {
+    evt.preventDefault()
+
+    if (Object.values(profileData).some(({ isValid }) => !isValid)) {
+      return
+    }
+
+    setLoading(true)
+
+    const profileDataValues: {
+      [field in keyof ProfileState]: ProfileState[field]['value']
+    } = Object.keys(profileData).reduce(
+      (profile, fieldName) => ({
+        ...profile,
+        [fieldName]: profileData[fieldName as keyof ProfileState].value,
+      }),
+      {} as any
+    )
+
+    const { success } = await setOrderProfile(profileDataValues)
+
+    setLoading(false)
+
+    if (success) {
+      console.log('yay')
+    } else {
+      console.log('non')
+    }
   }
 
   return (
@@ -124,22 +205,26 @@ const ProfileForm: React.FC = () => {
         </span>
         <span className="dib mt3">{email.current}</span>
       </div>
-      <form className="mt6">
+      <form className="mt6" onSubmit={handleSubmit}>
         <div className="flex flex-column flex-row-ns">
           <div className="w-100">
             <Input
               label={intl.formatMessage(messages.firstNameLabel)}
               name="firstName"
-              value={profileData.firstName}
+              value={profileData.firstName.value}
+              errorMessage={profileData.firstName.error}
               onChange={handleChange}
+              onBlur={handleBlur}
             />
           </div>
           <div className="w-100 mt6 mt0-ns ml0 ml5-ns">
             <Input
               label={intl.formatMessage(messages.lastNameLabel)}
               name="lastName"
-              value={profileData.lastName}
+              value={profileData.lastName.value}
+              errorMessage={profileData.lastName.error}
               onChange={handleChange}
+              onBlur={handleBlur}
             />
           </div>
         </div>
@@ -165,15 +250,17 @@ const ProfileForm: React.FC = () => {
               prefix={
                 <Dropdown
                   options={DOCUMENT_OPTIONS}
-                  value={profileData.documentType}
+                  value={profileData.documentType.value}
                   name="documentType"
                   onChange={handleChange}
                 />
               }
               label={intl.formatMessage(messages.documentLabel)}
               name="document"
-              value={profileData.document}
+              value={profileData.document.value}
+              errorMessage={profileData.document.error}
               onChange={handleChange}
+              onBlur={handleBlur}
             />
           </div>
         </div>
@@ -193,7 +280,13 @@ const ProfileForm: React.FC = () => {
             />
           </div>
         </div>
-        <Button size="large" block>
+        <Button
+          size="large"
+          type="submit"
+          block
+          disabled={loading}
+          loading={loading}
+        >
           {intl.formatMessage(messages.continueButtonLabel)}
         </Button>
       </form>
