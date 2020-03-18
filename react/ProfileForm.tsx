@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useRef, useReducer } from 'react'
-import { defineMessages, useIntl } from 'react-intl'
+import { defineMessages, useIntl, MessageDescriptor } from 'react-intl'
 import { OrderForm } from 'vtex.order-manager'
 import { OrderProfile } from 'vtex.order-profile'
 import {
@@ -45,9 +45,15 @@ const messages = defineMessages({
   continueButtonLabel: {
     id: 'store/checkout-profile-continue-button-label',
   },
+  fieldRequiredMessage: {
+    id: 'store/checkout-profile-field-required-message',
+  },
+  invalidPhoneMessage: {
+    id: 'store/checkout-profile-invalid-phone-message',
+  },
 })
 
-type FieldState<T> = { value: T; error?: string; isValid?: boolean }
+type FieldState<T> = { value: T; error?: MessageDescriptor; isValid?: boolean }
 
 type ProfileState = {
   firstName: FieldState<string>
@@ -61,7 +67,7 @@ type ProfileAction = {
   type: 'update'
   field: keyof ProfileState
   value?: string
-  error?: string
+  error?: MessageDescriptor
   isValid?: boolean
 }
 
@@ -136,7 +142,7 @@ const ProfileForm: React.FC = () => {
           type: 'update',
           field: name,
           isValid: false,
-          error: 'Field is required',
+          error: messages.fieldRequiredMessage,
         })
       } else {
         dispatch({
@@ -193,6 +199,7 @@ const ProfileForm: React.FC = () => {
       type: 'update',
       field: 'phone',
       value,
+      error: isValid ? undefined : messages.invalidPhoneMessage,
       isValid,
     })
   }
@@ -217,7 +224,11 @@ const ProfileForm: React.FC = () => {
               label={intl.formatMessage(messages.firstNameLabel)}
               name="firstName"
               value={profileData.firstName.value}
-              errorMessage={profileData.firstName.error}
+              errorMessage={
+                profileData.firstName.error
+                  ? intl.formatMessage(profileData.firstName.error)
+                  : undefined
+              }
               onChange={handleChange}
               onBlur={handleBlur}
             />
@@ -227,7 +238,11 @@ const ProfileForm: React.FC = () => {
               label={intl.formatMessage(messages.lastNameLabel)}
               name="lastName"
               value={profileData.lastName.value}
-              errorMessage={profileData.lastName.error}
+              errorMessage={
+                profileData.lastName.error
+                  ? intl.formatMessage(profileData.lastName.error)
+                  : undefined
+              }
               onChange={handleChange}
               onBlur={handleBlur}
             />
@@ -240,6 +255,11 @@ const ProfileForm: React.FC = () => {
                 label={intl.formatMessage(messages.phoneLabel)}
                 value={profileData.phone.value}
                 onChange={handlePhoneChange}
+                errorMessage={
+                  profileData.phone.error
+                    ? intl.formatMessage(profileData.phone.error)
+                    : undefined
+                }
               />
             </PhoneContext.PhoneContextProvider>
           </div>
@@ -256,7 +276,11 @@ const ProfileForm: React.FC = () => {
               label={intl.formatMessage(messages.documentLabel)}
               name="document"
               value={profileData.document.value}
-              errorMessage={profileData.document.error}
+              errorMessage={
+                profileData.document.error
+                  ? intl.formatMessage(profileData.document.error)
+                  : undefined
+              }
               onChange={handleChange}
               onBlur={handleBlur}
             />

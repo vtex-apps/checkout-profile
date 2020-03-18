@@ -169,9 +169,9 @@ shallow-equal@^1.2.1:
   version "0.1.1"
   resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.order-profile@0.1.1/public/@types/vtex.order-profile#6895df004d5ca6e4c2faf505af9e78a31501e593"
 
-"vtex.phone-field@https://lucas--checkoutio.myvtex.com/_v/private/typings/linked/v1/vtex.phone-field@0.0.0+build1584480511/public/@types/vtex.phone-field":
+"vtex.phone-field@https://lucas--checkoutio.myvtex.com/_v/private/typings/linked/v1/vtex.phone-field@0.0.0+build1584485306/public/@types/vtex.phone-field":
   version "0.0.0"
-  resolved "https://lucas--checkoutio.myvtex.com/_v/private/typings/linked/v1/vtex.phone-field@0.0.0+build1584480511/public/@types/vtex.phone-field#41132ddd8019c8f6b37aa6dc00a80c7898e436eb"
+  resolved "https://lucas--checkoutio.myvtex.com/_v/private/typings/linked/v1/vtex.phone-field@0.0.0+build1584485306/public/@types/vtex.phone-field#ef8ff15c8fa572bb36e5b0f007240acb63ae0da3"
 
 "vtex.render-runtime@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.render-runtime@8.95.1/public/@types/vtex.render-runtime":
   version "8.95.1"

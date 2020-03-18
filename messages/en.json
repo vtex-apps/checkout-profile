@@ -6,5 +6,7 @@
   "store/checkout-profile-document-label": "Document",
   "store/checkout-profile-save-info-label": "Save my info for future purchases.",
   "store/checkout-profile-newsletter-optin-label": "I want to receive the newsletter.",
-  "store/checkout-profile-continue-button-label": "Continue"
+  "store/checkout-profile-continue-button-label": "Continue",
+  "store/checkout-profile-field-required-message": "Field is required",
+  "store/checkout-profile-invalid-phone-message": "Invalid phone number"
 }
