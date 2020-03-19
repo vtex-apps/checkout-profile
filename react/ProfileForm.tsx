@@ -168,7 +168,7 @@ const ProfileForm: React.FC = () => {
     },
   })
 
-  const email = useRef(orderForm.clientProfileData?.email)
+  const emailRef = useRef(orderForm.clientProfileData?.email)
 
   const validateField = useCallback(
     <T extends any>(fieldName: keyof ProfileState, field: FieldState<T>) => {
@@ -242,7 +242,10 @@ const ProfileForm: React.FC = () => {
       {} as any
     )
 
-    const { success } = await setOrderProfile(profileDataValues)
+    const { success } = await setOrderProfile({
+      ...profileDataValues,
+      email: emailRef.current,
+    })
 
     setLoading(false)
 
@@ -287,7 +290,7 @@ const ProfileForm: React.FC = () => {
             </ButtonPlain>
           </div>
         </span>
-        <span className="dib mt3">{email.current}</span>
+        <span className="dib mt3">{emailRef.current}</span>
       </div>
       <form className="mt6" onSubmit={handleSubmit}>
         <div className="flex flex-column flex-row-ns">
