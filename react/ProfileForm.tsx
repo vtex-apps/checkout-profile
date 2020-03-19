@@ -388,7 +388,7 @@ const ProfileForm: React.FC = () => {
           type="submit"
           block
           disabled={loading}
-          loading={loading}
+          isLoading={loading}
         >
           {intl.formatMessage(messages.continueButtonLabel)}
         </Button>
