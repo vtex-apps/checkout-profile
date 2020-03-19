@@ -1,7 +1,7 @@
 import React from 'react'
 import { OrderForm } from 'vtex.order-manager'
 
-const ProfilePreview: React.FC = () => {
+const ProfileSummary: React.FC = () => {
   const { orderForm } = OrderForm.useOrderForm()
 
   if (!orderForm.clientProfileData) {
@@ -22,4 +22,4 @@ const ProfilePreview: React.FC = () => {
   )
 }
 
-export default ProfilePreview
+export default ProfileSummary
