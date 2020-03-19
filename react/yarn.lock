@@ -169,14 +169,14 @@ shallow-equal@^1.2.1:
   version "0.1.1"
   resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.order-profile@0.1.1/public/@types/vtex.order-profile#6895df004d5ca6e4c2faf505af9e78a31501e593"
 
-"vtex.phone-field@https://lucas--checkoutio.myvtex.com/_v/private/typings/linked/v1/vtex.phone-field@0.0.0+build1584485306/public/@types/vtex.phone-field":
-  version "0.0.0"
-  resolved "https://lucas--checkoutio.myvtex.com/_v/private/typings/linked/v1/vtex.phone-field@0.0.0+build1584485306/public/@types/vtex.phone-field#ef8ff15c8fa572bb36e5b0f007240acb63ae0da3"
+"vtex.phone-field@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.phone-field@0.1.0/public/@types/vtex.phone-field":
+  version "0.1.0"
+  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.phone-field@0.1.0/public/@types/vtex.phone-field#168b9af54b90d6781ab42611400f70317fb81474"
 
 "vtex.render-runtime@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.render-runtime@8.95.1/public/@types/vtex.render-runtime":
   version "8.95.1"
   resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.render-runtime@8.95.1/public/@types/vtex.render-runtime#3aae291d0cd239d3059ea8ae8c3c2800ce36d22f"
 
-"vtex.styleguide@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.styleguide@9.112.20/public/@types/vtex.styleguide":
-  version "9.112.20"
-  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.styleguide@9.112.20/public/@types/vtex.styleguide#24a4c80ce94ad4adc500cefd17c3f5071ad47b4c"
+"vtex.styleguide@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.styleguide@9.112.24/public/@types/vtex.styleguide":
+  version "9.112.24"
+  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.styleguide@9.112.24/public/@types/vtex.styleguide#e9f6e91b08a7a36c472979aead8641f3c20c4db4"
