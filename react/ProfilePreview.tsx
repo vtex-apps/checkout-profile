@@ -8,13 +8,16 @@ const ProfilePreview: React.FC = () => {
     return null
   }
 
+  const {
+    clientProfileData: { firstName, lastName, email },
+  } = orderForm
+
+  const fullName = firstName && lastName && `${firstName} ${lastName}`
+
   return (
-    <div className="flex flex-column">
-      <span className="c-base lh-title">
-        {orderForm.clientProfileData.firstName}{' '}
-        {orderForm.clientProfileData.lastName} <br />
-        {orderForm.clientProfileData.email}
-      </span>
+    <div className="flex flex-column c-on-base">
+      {fullName && <span className="db mb4 lh-title">{fullName}</span>}
+      <span className="db lh-title">{email}</span>
     </div>
   )
 }
