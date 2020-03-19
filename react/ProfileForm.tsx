@@ -1,4 +1,10 @@
-import React, { useState, useCallback, useRef, useReducer } from 'react'
+import React, {
+  useState,
+  useCallback,
+  useRef,
+  useReducer,
+  useEffect,
+} from 'react'
 import { defineMessages, useIntl, MessageDescriptor } from 'react-intl'
 import { OrderForm } from 'vtex.order-manager'
 import { OrderProfile } from 'vtex.order-profile'
@@ -53,7 +59,16 @@ const messages = defineMessages({
   },
 })
 
-type FieldState<T> = { value: T; error?: MessageDescriptor; isValid?: boolean }
+type FieldState<T> = {
+  value: T
+  blur?: boolean
+} & (
+  | {
+      error?: undefined
+      isValid: true
+    }
+  | { error: MessageDescriptor; isValid: false }
+)
 
 type ProfileState = {
   firstName: FieldState<string>
@@ -63,26 +78,57 @@ type ProfileState = {
   document: FieldState<string>
 }
 
-type ProfileAction = {
-  type: 'update'
-  field: keyof ProfileState
-  value?: string
-  error?: MessageDescriptor
-  isValid?: boolean
-}
+type ProfileAction = { field: keyof ProfileState } & (
+  | {
+      type: 'update'
+      value: string
+      isValid?: boolean
+    }
+  | {
+      type: 'set_error'
+      isValid: boolean
+      error: MessageDescriptor | undefined
+    }
+  | { type: 'blur' }
+)
 
 const profileReducer = (
   profile: ProfileState,
   action: ProfileAction
 ): ProfileState => {
+  const { field } = action
   switch (action.type) {
     case 'update': {
-      const { field, type, ...fieldData } = action
+      const { value, isValid } = action
+      const newField = {
+        ...profile[field],
+        value,
+        isValid: isValid ?? profile[field].isValid,
+        blur: false,
+      }
+
       return {
         ...profile,
-        [action.field]: {
-          ...profile[action.field],
-          ...fieldData,
+        [field]: newField,
+      }
+    }
+    case 'set_error': {
+      const { error, isValid } = action
+      return {
+        ...profile,
+        [field]: {
+          ...profile[field],
+          error,
+          isValid,
+        },
+      }
+    }
+    case 'blur': {
+      return {
+        ...profile,
+        [field]: {
+          ...profile[field],
+          blur: true,
         },
       }
     }
@@ -106,14 +152,43 @@ const ProfileForm: React.FC = () => {
   const [profileData, dispatch] = useReducer<
     React.Reducer<ProfileState, ProfileAction>
   >(profileReducer, {
-    firstName: { value: orderForm.clientProfileData?.firstName ?? '' },
-    lastName: { value: orderForm.clientProfileData?.lastName ?? '' },
-    phone: { value: orderForm.clientProfileData?.phone ?? '' },
-    documentType: { value: 'cpf' },
-    document: { value: orderForm.clientProfileData?.document ?? '' },
+    firstName: {
+      value: orderForm.clientProfileData?.firstName ?? '',
+      isValid: true,
+    },
+    lastName: {
+      value: orderForm.clientProfileData?.lastName ?? '',
+      isValid: true,
+    },
+    phone: { value: orderForm.clientProfileData?.phone ?? '', isValid: true },
+    documentType: { value: 'cpf', isValid: true },
+    document: {
+      value: orderForm.clientProfileData?.document ?? '',
+      isValid: true,
+    },
   })
 
   const email = useRef(orderForm.clientProfileData?.email)
+
+  const validateField = useCallback(
+    <T extends any>(fieldName: keyof ProfileState, field: FieldState<T>) => {
+      if (!field.value && (field.isValid ?? true)) {
+        dispatch({
+          type: 'set_error',
+          field: fieldName,
+          isValid: false,
+          error: messages.fieldRequiredMessage,
+        })
+      }
+    },
+    []
+  )
+
+  useEffect(() => {
+    Object.entries(profileData).forEach(([fieldName, field]) =>
+      validateField(fieldName as keyof ProfileState, field)
+    )
+  }, [profileData, validateField])
 
   const handleEditEmail = useCallback(() => {
     navigate({ page: 'store.checkout.identification' })
@@ -132,38 +207,26 @@ const ProfileForm: React.FC = () => {
       type: 'update',
       field: evt.target.name as keyof ProfileState,
       value: evt.target.value,
+      isValid: evt.target.value.length > 0,
     })
   }
 
-  const validateField = useCallback(
-    (name: keyof ProfileState, value: string) => {
-      if (!value) {
-        dispatch({
-          type: 'update',
-          field: name,
-          isValid: false,
-          error: messages.fieldRequiredMessage,
-        })
-      } else {
-        dispatch({
-          type: 'update',
-          field: name,
-          isValid: true,
-          error: undefined,
-        })
-      }
-    },
-    []
-  )
-
   const handleBlur: React.FocusEventHandler<HTMLInputElement> = evt => {
-    validateField(evt.target.name as keyof ProfileState, evt.target.value)
+    dispatch({
+      type: 'blur',
+      field: evt.target.name as keyof ProfileState,
+    })
   }
 
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = async evt => {
     evt.preventDefault()
 
     if (Object.values(profileData).some(({ isValid }) => !isValid)) {
+      // send blur event to all fields so it's clear to the user which
+      // fields are in an invalid state.
+      Object.keys(profileData).forEach(field =>
+        dispatch({ type: 'blur', field: field as keyof ProfileState })
+      )
       return
     }
 
@@ -184,7 +247,8 @@ const ProfileForm: React.FC = () => {
     setLoading(false)
 
     if (success) {
-      // yay
+      // should go to the next step. maybe call a function exposed
+      // in the checkout-container context
     }
   }
 
@@ -199,9 +263,17 @@ const ProfileForm: React.FC = () => {
       type: 'update',
       field: 'phone',
       value,
-      error: isValid ? undefined : messages.invalidPhoneMessage,
       isValid,
     })
+
+    if (!isValid) {
+      dispatch({
+        type: 'set_error',
+        field: 'phone',
+        isValid: false,
+        error: messages.invalidPhoneMessage,
+      })
+    }
   }
 
   return (
@@ -225,9 +297,10 @@ const ProfileForm: React.FC = () => {
               name="firstName"
               value={profileData.firstName.value}
               errorMessage={
-                profileData.firstName.error
-                  ? intl.formatMessage(profileData.firstName.error)
-                  : undefined
+                (profileData.firstName.blur &&
+                  !profileData.firstName.isValid &&
+                  intl.formatMessage(profileData.firstName.error)) ||
+                undefined
               }
               onChange={handleChange}
               onBlur={handleBlur}
@@ -239,9 +312,10 @@ const ProfileForm: React.FC = () => {
               name="lastName"
               value={profileData.lastName.value}
               errorMessage={
-                profileData.lastName.error
-                  ? intl.formatMessage(profileData.lastName.error)
-                  : undefined
+                (profileData.lastName.blur &&
+                  !profileData.lastName.isValid &&
+                  intl.formatMessage(profileData.lastName.error)) ||
+                undefined
               }
               onChange={handleChange}
               onBlur={handleBlur}
@@ -254,11 +328,14 @@ const ProfileForm: React.FC = () => {
               <PhoneField
                 label={intl.formatMessage(messages.phoneLabel)}
                 value={profileData.phone.value}
+                name="phone"
                 onChange={handlePhoneChange}
+                onBlur={handleBlur}
                 errorMessage={
-                  profileData.phone.error
-                    ? intl.formatMessage(profileData.phone.error)
-                    : undefined
+                  (profileData.phone.blur &&
+                    !profileData.phone.isValid &&
+                    intl.formatMessage(profileData.phone.error)) ||
+                  undefined
                 }
               />
             </PhoneContext.PhoneContextProvider>
@@ -277,9 +354,10 @@ const ProfileForm: React.FC = () => {
               name="document"
               value={profileData.document.value}
               errorMessage={
-                profileData.document.error
-                  ? intl.formatMessage(profileData.document.error)
-                  : undefined
+                (profileData.document.blur &&
+                  !profileData.document.isValid &&
+                  intl.formatMessage(profileData.document.error)) ||
+                undefined
               }
               onChange={handleChange}
               onBlur={handleBlur}
