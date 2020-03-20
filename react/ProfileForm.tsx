@@ -145,6 +145,8 @@ const ProfileForm: React.FC = () => {
   const intl = useIntl()
 
   const [loading, setLoading] = useState(false)
+  const phoneContainerRef = useRef<HTMLDivElement>(null)
+  const phoneInputRef = useRef<HTMLInputElement>(null)
 
   const [persistInfo, setPersistInfo] = useState(false)
   const [optinNewsletter, setOptinNewsletter] = useState(false)
@@ -216,6 +218,31 @@ const ProfileForm: React.FC = () => {
       type: 'blur',
       field: evt.target.name as keyof ProfileState,
     })
+  }
+
+  const handlePhoneBlur: React.FocusEventHandler<HTMLInputElement> = () => {
+    // this timeout is needed because the phone field component focus
+    // the listbox button after the change handler, so we need to wait
+    // for the next tick when the focus has been potentially changed to it
+    setTimeout(() => {
+      if (
+        document.activeElement == null ||
+        // consider that the listbox is also our "input", so we won't trigger
+        // the error message if the user is selecting the country calling code
+        (document.activeElement !== phoneInputRef.current &&
+          !document.activeElement.matches('[data-reach-listbox-list=""]') &&
+          !(
+            phoneContainerRef.current!.compareDocumentPosition(
+              document.activeElement
+            ) & Node.DOCUMENT_POSITION_CONTAINED_BY
+          ))
+      ) {
+        dispatch({
+          type: 'blur',
+          field: 'phone',
+        })
+      }
+    }, 0)
   }
 
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = async evt => {
@@ -326,14 +353,15 @@ const ProfileForm: React.FC = () => {
           </div>
         </div>
         <div className="flex flex-column flex-row-ns mt6">
-          <div className="w-100">
+          <div className="w-100" ref={phoneContainerRef}>
             <PhoneContext.PhoneContextProvider rules={rules}>
               <PhoneField
+                ref={phoneInputRef}
                 label={intl.formatMessage(messages.phoneLabel)}
                 value={profileData.phone.value}
                 name="phone"
                 onChange={handlePhoneChange}
-                onBlur={handleBlur}
+                onBlur={handlePhoneBlur}
                 errorMessage={
                   (profileData.phone.blur &&
                     !profileData.phone.isValid &&
