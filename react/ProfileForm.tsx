@@ -175,7 +175,9 @@ const ProfileForm: React.FC = () => {
   const phoneInputRef = useRef<HTMLInputElement>(null)
 
   const [persistInfo, setPersistInfo] = useState(false)
-  const [optinNewsletter, setOptinNewsletter] = useState(false)
+  const [optInNewsletter, setOptInNewsletter] = useState(
+    orderForm.clientPreferencesData?.optInNewsletter ?? false
+  )
 
   const [profileData, dispatch] = useReducer<
     React.Reducer<ProfileState, ProfileAction>
@@ -230,7 +232,7 @@ const ProfileForm: React.FC = () => {
   }
 
   const handleOptinNewsletterChange: React.ChangeEventHandler<HTMLInputElement> = evt => {
-    setOptinNewsletter(evt.target.checked)
+    setOptInNewsletter(evt.target.checked)
   }
 
   const handleChange: React.ChangeEventHandler<HTMLInputElement> = evt => {
@@ -455,7 +457,7 @@ const ProfileForm: React.FC = () => {
           <div className="mt6">
             <Checkbox
               label={intl.formatMessage(messages.newsletterOptinLabel)}
-              checked={optinNewsletter}
+              checked={optInNewsletter}
               onChange={handleOptinNewsletterChange}
             />
           </div>
