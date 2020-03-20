@@ -110,6 +110,11 @@ loose-envify@^1.1.0, loose-envify@^1.4.0:
   dependencies:
     js-tokens "^3.0.0 || ^4.0.0"
 
+msk@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/msk/-/msk-1.0.5.tgz#f085744d472caf3d5a32fe85c1c71db1cddb1480"
+  integrity sha512-IdnSUa9lWrsCiwfIVmdgPhXu6+HFIEIlxMk2QDktzTP6VVkz2pm2aMktYS7mnicsKFa/K/oO6rsPKK2eYAsAzQ==
+
 object-assign@^4.1.1:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/object-assign/-/object-assign-4.1.1.tgz#2109adc7965887cfc05cbbd442cac8bfbb360863"

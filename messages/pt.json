@@ -8,5 +8,6 @@
   "store/checkout-profile-newsletter-optin-label": "Quero receber email promocionais.",
   "store/checkout-profile-continue-button-label": "Continuar",
   "store/checkout-profile-field-required-message": "Campo é obrigatório",
-  "store/checkout-profile-invalid-phone-message": "Número de telefone inválido"
+  "store/checkout-profile-invalid-phone-message": "Número de telefone inválido",
+  "store/checkout-profile-invalid-document-message": "CPF inválido"
 }

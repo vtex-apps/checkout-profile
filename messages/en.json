@@ -8,5 +8,6 @@
   "store/checkout-profile-newsletter-optin-label": "I want to receive the newsletter.",
   "store/checkout-profile-continue-button-label": "Continue",
   "store/checkout-profile-field-required-message": "Field is required",
-  "store/checkout-profile-invalid-phone-message": "Invalid phone number"
+  "store/checkout-profile-invalid-phone-message": "Invalid phone number",
+  "store/checkout-profile-invalid-document-message": "Invalid document number"
 }

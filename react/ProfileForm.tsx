@@ -1,3 +1,4 @@
+import msk from 'msk'
 import React, {
   useState,
   useCallback,
@@ -8,23 +9,45 @@ import React, {
 import { defineMessages, useIntl, MessageDescriptor } from 'react-intl'
 import { OrderForm } from 'vtex.order-manager'
 import { OrderProfile } from 'vtex.order-profile'
-import {
-  Input,
-  Checkbox,
-  Button,
-  ButtonPlain,
-  IconEdit,
-  Dropdown,
-} from 'vtex.styleguide'
+import { Input, Checkbox, Button, ButtonPlain, IconEdit } from 'vtex.styleguide'
 import { useRuntime } from 'vtex.render-runtime'
 import { PhoneField, PhoneContext, rules } from 'vtex.phone-field'
 
-const DOCUMENT_OPTIONS = [
-  {
-    value: 'cpf',
-    label: 'CPF',
-  },
-]
+const CPF_MASK = '999.999.999-99'
+
+const unmaskCPF = (value: string) => value.replace(/\D/g, '')
+
+const validateCPF = (value: string) => {
+  const unmaskedValue = unmaskCPF(value)
+
+  if (unmaskedValue.length < 11) {
+    return false
+  }
+
+  let [secondDigit, firstDigit, ...digits] = unmaskedValue
+    .split('')
+    .map(digit => parseInt(digit, 10))
+    .reverse()
+
+  digits = digits.reverse()
+
+  const firstDigitSum = digits.reduce(
+    (acc, digit, index) => acc + digit * (10 - index),
+    0
+  )
+  const firstDigitRemainder = ((firstDigitSum * 10) % 11) % 10
+
+  if (firstDigitRemainder !== firstDigit) return false
+
+  const secondDigitSum = digits
+    .concat([firstDigit])
+    .reduce((acc, digit, index) => acc + digit * (11 - index), 0)
+  const secondDigitRemainder = ((secondDigitSum * 10) % 11) % 10
+
+  if (secondDigitRemainder !== secondDigit) return false
+
+  return true
+}
 
 const messages = defineMessages({
   emailInfo: {
@@ -56,6 +79,9 @@ const messages = defineMessages({
   },
   invalidPhoneMessage: {
     id: 'store/checkout-profile-invalid-phone-message',
+  },
+  invalidDocumentMessage: {
+    id: 'store/checkout-profile-invalid-document-message',
   },
 })
 
@@ -163,7 +189,10 @@ const ProfileForm: React.FC = () => {
       isValid: true,
     },
     phone: { value: orderForm.clientProfileData?.phone ?? '', isValid: true },
-    documentType: { value: 'cpf', isValid: true },
+    documentType: {
+      value: orderForm.clientProfileData?.documentType ?? 'cpf',
+      isValid: true,
+    },
     document: {
       value: orderForm.clientProfileData?.document ?? '',
       isValid: true,
@@ -211,6 +240,31 @@ const ProfileForm: React.FC = () => {
       value: evt.target.value,
       isValid: evt.target.value.length > 0,
     })
+  }
+
+  const handleDocumentChange: React.ChangeEventHandler<HTMLInputElement> = evt => {
+    const value = unmaskCPF(msk.fit(evt.target.value, CPF_MASK))
+
+    const documentValid = value.length > 0 && validateCPF(value)
+
+    dispatch({
+      type: 'update',
+      field: 'document',
+      value,
+      isValid: documentValid,
+    })
+
+    if (!documentValid) {
+      dispatch({
+        type: 'set_error',
+        field: 'document',
+        isValid: false,
+        error:
+          value.length > 0
+            ? messages.invalidDocumentMessage
+            : messages.fieldRequiredMessage,
+      })
+    }
   }
 
   const handleBlur: React.FocusEventHandler<HTMLInputElement> = evt => {
@@ -374,23 +428,18 @@ const ProfileForm: React.FC = () => {
           <div className="w-100 mt6 mt0-ns ml0 ml5-ns">
             <Input
               prefix={
-                <Dropdown
-                  options={DOCUMENT_OPTIONS}
-                  value={profileData.documentType.value}
-                  name="documentType"
-                  onChange={handleChange}
-                />
+                <span className="ttu">{profileData.documentType.value}</span>
               }
               label={intl.formatMessage(messages.documentLabel)}
               name="document"
-              value={profileData.document.value}
+              value={msk(profileData.document.value, CPF_MASK)}
               errorMessage={
                 (profileData.document.blur &&
                   !profileData.document.isValid &&
                   intl.formatMessage(profileData.document.error)) ||
                 undefined
               }
-              onChange={handleChange}
+              onChange={handleDocumentChange}
               onBlur={handleBlur}
             />
           </div>
