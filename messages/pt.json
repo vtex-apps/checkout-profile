@@ -9,5 +9,6 @@
   "store/checkout-profile-continue-button-label": "Continuar",
   "store/checkout-profile-field-required-message": "Campo é obrigatório",
   "store/checkout-profile-invalid-phone-message": "Número de telefone inválido",
-  "store/checkout-profile-invalid-document-message": "CPF inválido"
+  "store/checkout-profile-invalid-document-message": "CPF inválido",
+  "store/checkout-profile-submit-error-message": "Aconteceu um erro ao enviar seus dados. Por favor, tente novamente."
 }

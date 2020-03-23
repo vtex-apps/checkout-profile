@@ -83,6 +83,9 @@ const messages = defineMessages({
   invalidDocumentMessage: {
     id: 'store/checkout-profile-invalid-document-message',
   },
+  submitErrorMessage: {
+    id: 'store/checkout-profile-submit-error-message',
+  },
 })
 
 type FieldState<T> = {
@@ -174,6 +177,7 @@ const ProfileForm: React.FC = () => {
   const intl = useIntl()
 
   const [loading, setLoading] = useState(false)
+  const [submitFailed, setSubmitFailed] = useState(false)
   const phoneContainerRef = useRef<HTMLDivElement>(null)
   const phoneInputRef = useRef<HTMLInputElement>(null)
 
@@ -307,6 +311,8 @@ const ProfileForm: React.FC = () => {
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = async evt => {
     evt.preventDefault()
 
+    setSubmitFailed(false)
+
     if (Object.values(profileData).some(({ isValid }) => !isValid)) {
       // send blur event to all fields so it's clear to the user which
       // fields are in an invalid state.
@@ -344,6 +350,8 @@ const ProfileForm: React.FC = () => {
     if (profileUpdateSuccess && clientPreferencesUpdateSuccess) {
       // should go to the next step. maybe call a function exposed
       // in the checkout-container context
+    } else {
+      setSubmitFailed(true)
     }
   }
 
@@ -482,6 +490,11 @@ const ProfileForm: React.FC = () => {
             {intl.formatMessage(messages.continueButtonLabel)}
           </span>
         </Button>
+        {submitFailed && (
+          <span className="dib mt5 t-auxiliary c-danger">
+            {intl.formatMessage(messages.submitErrorMessage)}
+          </span>
+        )}
       </form>
     </>
   )
