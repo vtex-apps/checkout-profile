@@ -166,7 +166,10 @@ const profileReducer = (
 
 const ProfileForm: React.FC = () => {
   const { orderForm } = OrderForm.useOrderForm()
-  const { setOrderProfile } = OrderProfile.useOrderProfile()
+  const {
+    setOrderProfile,
+    setClientPreferencesData,
+  } = OrderProfile.useOrderProfile()
   const { navigate } = useRuntime()
   const intl = useIntl()
 
@@ -325,14 +328,20 @@ const ProfileForm: React.FC = () => {
       {} as any
     )
 
-    const { success } = await setOrderProfile({
-      ...profileDataValues,
-      email: emailRef.current,
-    })
+    const [
+      { success: profileUpdateSuccess },
+      { success: clientPreferencesUpdateSuccess },
+    ] = await Promise.all([
+      setOrderProfile({
+        ...profileDataValues,
+        email: emailRef.current,
+      }),
+      setClientPreferencesData({ optInNewsletter }),
+    ])
 
     setLoading(false)
 
-    if (success) {
+    if (profileUpdateSuccess && clientPreferencesUpdateSuccess) {
       // should go to the next step. maybe call a function exposed
       // in the checkout-container context
     }

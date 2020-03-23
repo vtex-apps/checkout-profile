@@ -170,18 +170,18 @@ shallow-equal@^1.2.1:
   version "0.8.2"
   resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.order-manager@0.8.2/public/@types/vtex.order-manager#99a926da2acbfe7612306be3648228cf3469ce45"
 
-"vtex.order-profile@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.order-profile@0.1.1/public/@types/vtex.order-profile":
-  version "0.1.1"
-  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.order-profile@0.1.1/public/@types/vtex.order-profile#6895df004d5ca6e4c2faf505af9e78a31501e593"
+"vtex.order-profile@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.order-profile@0.2.0/public/@types/vtex.order-profile":
+  version "0.2.0"
+  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.order-profile@0.2.0/public/@types/vtex.order-profile#431a5f235862cf63db356424b46188fe713cf4ad"
 
 "vtex.phone-field@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.phone-field@0.1.2/public/@types/vtex.phone-field":
   version "0.1.2"
   resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.phone-field@0.1.2/public/@types/vtex.phone-field#a464a29d9edda15ca20fc3049ef54cf6cca83ccc"
 
-"vtex.render-runtime@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.render-runtime@8.96.0/public/@types/vtex.render-runtime":
-  version "8.96.0"
-  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.render-runtime@8.96.0/public/@types/vtex.render-runtime#91f5b9d2efb33c984eafe7dbad8ca3e70a496c7b"
+"vtex.render-runtime@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.render-runtime@8.96.1/public/@types/vtex.render-runtime":
+  version "8.96.1"
+  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.render-runtime@8.96.1/public/@types/vtex.render-runtime#fc1e4ef3d821b47e1f6fe6a9a6a0a2c5a6005526"
 
-"vtex.styleguide@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.styleguide@9.112.25/public/@types/vtex.styleguide":
-  version "9.112.25"
-  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.styleguide@9.112.25/public/@types/vtex.styleguide#c53a24f4632a8eb989766c18946cd583a8bc1ba6"
+"vtex.styleguide@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.styleguide@9.112.26/public/@types/vtex.styleguide":
+  version "9.112.26"
+  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.styleguide@9.112.26/public/@types/vtex.styleguide#89a1e5de4cca1e923590840b5229917719291b15"
