@@ -166,6 +166,10 @@ shallow-equal@^1.2.1:
   resolved "https://registry.yarnpkg.com/shallow-equal/-/shallow-equal-1.2.1.tgz#4c16abfa56043aa20d050324efa68940b0da79da"
   integrity sha512-S4vJDjHHMBaiZuT9NPb616CSmLf618jawtv3sufLl6ivK8WocjAo58cXwbRV1cgqxH0Qbv+iUt6m05eqEa2IRA==
 
+"vtex.document-field@https://lucas--checkoutio.myvtex.com/_v/private/typings/linked/v1/vtex.document-field@0.0.0+build1584990909/public/@types/vtex.document-field":
+  version "0.0.0"
+  resolved "https://lucas--checkoutio.myvtex.com/_v/private/typings/linked/v1/vtex.document-field@0.0.0+build1584990909/public/@types/vtex.document-field#c0273ff1820ef7bdbf7fe15f34d57acb4f98bed2"
+
 "vtex.order-manager@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.order-manager@0.8.2/public/@types/vtex.order-manager":
   version "0.8.2"
   resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.order-manager@0.8.2/public/@types/vtex.order-manager#99a926da2acbfe7612306be3648228cf3469ce45"
@@ -174,9 +178,9 @@ shallow-equal@^1.2.1:
   version "0.2.0"
   resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.order-profile@0.2.0/public/@types/vtex.order-profile#431a5f235862cf63db356424b46188fe713cf4ad"
 
-"vtex.phone-field@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.phone-field@0.1.2/public/@types/vtex.phone-field":
-  version "0.1.2"
-  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.phone-field@0.1.2/public/@types/vtex.phone-field#a464a29d9edda15ca20fc3049ef54cf6cca83ccc"
+"vtex.phone-field@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.phone-field@0.1.3/public/@types/vtex.phone-field":
+  version "0.1.3"
+  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.phone-field@0.1.3/public/@types/vtex.phone-field#20fca2aff9f63b034ce102bf9beff00d31111252"
 
 "vtex.render-runtime@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.render-runtime@8.96.1/public/@types/vtex.render-runtime":
   version "8.96.1"

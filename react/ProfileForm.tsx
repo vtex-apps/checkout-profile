@@ -1,4 +1,3 @@
-import msk from 'msk'
 import React, {
   useState,
   useCallback,
@@ -12,42 +11,7 @@ import { OrderProfile } from 'vtex.order-profile'
 import { Input, Checkbox, Button, ButtonPlain, IconEdit } from 'vtex.styleguide'
 import { useRuntime } from 'vtex.render-runtime'
 import { PhoneField, PhoneContext, rules } from 'vtex.phone-field'
-
-const CPF_MASK = '999.999.999-99'
-
-const unmaskCPF = (value: string) => value.replace(/\D/g, '')
-
-const validateCPF = (value: string) => {
-  const unmaskedValue = unmaskCPF(value)
-
-  if (unmaskedValue.length < 11) {
-    return false
-  }
-
-  let [secondDigit, firstDigit, ...digits] = unmaskedValue
-    .split('')
-    .map(digit => parseInt(digit, 10))
-    .reverse()
-
-  digits = digits.reverse()
-
-  const firstDigitSum = digits.reduce(
-    (acc, digit, index) => acc + digit * (10 - index),
-    0
-  )
-  const firstDigitRemainder = ((firstDigitSum * 10) % 11) % 10
-
-  if (firstDigitRemainder !== firstDigit) return false
-
-  const secondDigitSum = digits
-    .concat([firstDigit])
-    .reduce((acc, digit, index) => acc + digit * (11 - index), 0)
-  const secondDigitRemainder = ((secondDigitSum * 10) % 11) % 10
-
-  if (secondDigitRemainder !== secondDigit) return false
-
-  return true
-}
+import { DocumentField } from 'vtex.document-field'
 
 const messages = defineMessages({
   emailInfo: {
@@ -251,25 +215,35 @@ const ProfileForm: React.FC = () => {
     })
   }
 
-  const handleDocumentChange: React.ChangeEventHandler<HTMLInputElement> = evt => {
-    const value = unmaskCPF(msk.fit(evt.target.value, CPF_MASK))
-
-    const documentValid = value.length > 0 && validateCPF(value)
-
+  const handleDocumentChange = ({
+    document,
+    documentType,
+    isValid,
+  }: {
+    document: string
+    documentType: string
+    isValid: boolean
+  }) => {
     dispatch({
       type: 'update',
       field: 'document',
-      value,
-      isValid: documentValid,
+      value: document,
+      isValid,
     })
 
-    if (!documentValid) {
+    dispatch({
+      type: 'update',
+      field: 'documentType',
+      value: documentType,
+    })
+
+    if (!isValid) {
       dispatch({
         type: 'set_error',
         field: 'document',
         isValid: false,
         error:
-          value.length > 0
+          document.length > 0
             ? messages.invalidDocumentMessage
             : messages.fieldRequiredMessage,
       })
@@ -445,13 +419,11 @@ const ProfileForm: React.FC = () => {
             </PhoneContext.PhoneContextProvider>
           </div>
           <div className="w-100 mt6 mt0-ns ml0 ml5-ns">
-            <Input
-              prefix={
-                <span className="ttu">{profileData.documentType.value}</span>
-              }
+            <DocumentField
+              document={profileData.document.value}
+              documentType={profileData.documentType.value}
               label={intl.formatMessage(messages.documentLabel)}
               name="document"
-              value={msk(profileData.document.value, CPF_MASK)}
               errorMessage={
                 (profileData.document.blur &&
                   !profileData.document.isValid &&

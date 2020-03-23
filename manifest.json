@@ -10,6 +10,7 @@
     "react": "3.x"
   },
   "dependencies": {
+    "vtex.document-field": "0.x",
     "vtex.order-manager": "0.x",
     "vtex.order-profile": "0.x",
     "vtex.phone-field": "0.x",
