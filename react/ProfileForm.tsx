@@ -478,7 +478,9 @@ const ProfileForm: React.FC = () => {
           disabled={loading}
           isLoading={loading}
         >
-          {intl.formatMessage(messages.continueButtonLabel)}
+          <span className="f5">
+            {intl.formatMessage(messages.continueButtonLabel)}
+          </span>
         </Button>
       </form>
     </>
