@@ -11,7 +11,7 @@
   "devDependencies": {
     "@types/node": "^13.9.0",
     "@types/react": "^16.9.23",
-    "vtex.document-field": "https://lucas--checkoutio.myvtex.com/_v/private/typings/linked/v1/vtex.document-field@0.0.0+build1584990909/public/@types/vtex.document-field",
+    "vtex.document-field": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.document-field@0.1.0/public/@types/vtex.document-field",
     "vtex.order-manager": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.order-manager@0.8.2/public/@types/vtex.order-manager",
     "vtex.order-profile": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.order-profile@0.2.0/public/@types/vtex.order-profile",
     "vtex.phone-field": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.phone-field@0.1.3/public/@types/vtex.phone-field",
