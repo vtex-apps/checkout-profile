@@ -308,24 +308,28 @@ const ProfileForm: React.FC = () => {
       {} as any
     )
 
-    const [
-      { success: profileUpdateSuccess },
-      { success: clientPreferencesUpdateSuccess },
-    ] = await Promise.all([
-      setOrderProfile({
-        ...profileDataValues,
-        email: emailRef.current,
-      }),
-      setClientPreferencesData({ optInNewsletter }),
-    ])
+    try {
+      const [
+        { success: profileUpdateSuccess },
+        { success: clientPreferencesUpdateSuccess },
+      ] = await Promise.all([
+        setOrderProfile({
+          ...profileDataValues,
+          email: emailRef.current,
+        }),
+        setClientPreferencesData({ optInNewsletter }),
+      ])
 
-    setLoading(false)
-
-    if (profileUpdateSuccess && clientPreferencesUpdateSuccess) {
-      // should go to the next step. maybe call a function exposed
-      // in the checkout-container context
-    } else {
+      if (profileUpdateSuccess && clientPreferencesUpdateSuccess) {
+        // should go to the next step. maybe call a function exposed
+        // in the checkout-container context
+      } else {
+        setSubmitFailed(true)
+      }
+    } catch (err) {
       setSubmitFailed(true)
+    } finally {
+      setLoading(false)
     }
   }
 
