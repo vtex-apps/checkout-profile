@@ -17,7 +17,7 @@ To use this app, first include it in your `manifest.json` dependencies.
 }
 ```
 
-> If your are using TypeScript, you may also want to run `vtex setup` after the step above
+> If you are using TypeScript, you may also want to run `vtex setup` after the step above
 
 Then, you can import the component and use it
 
