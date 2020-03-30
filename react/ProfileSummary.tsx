@@ -15,7 +15,7 @@ const ProfileSummary: React.FC = () => {
   const fullName = firstName && lastName && `${firstName} ${lastName}`
 
   return (
-    <div className="flex flex-column c-on-base">
+    <div className="flex flex-column c-muted-1">
       {fullName && <span className="db mb4 lh-title">{fullName}</span>}
       <span className="db lh-title">{email}</span>
     </div>
