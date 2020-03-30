@@ -6,8 +6,15 @@
   "description": "Profile form and summary used in Checkout",
   "builders": {
     "docs": "0.x",
+    "messages": "1.x",
     "react": "3.x"
   },
-  "dependencies": {},
+  "dependencies": {
+    "vtex.document-field": "0.x",
+    "vtex.order-manager": "0.x",
+    "vtex.order-profile": "0.x",
+    "vtex.phone-field": "0.x",
+    "vtex.styleguide": "9.x"
+  },
   "$schema": "https://raw.githubusercontent.com/vtex/node-vtex-api/master/gen/manifest.schema"
 }

@@ -4,11 +4,18 @@
   "private": true,
   "license": "UNLICENSED",
   "dependencies": {
-    "react": "^16.13.0"
+    "msk": "^1.0.5",
+    "react": "^16.13.0",
+    "react-intl": "^3.12.1"
   },
   "devDependencies": {
     "@types/node": "^13.9.0",
     "@types/react": "^16.9.23",
-    "vtex.render-runtime": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.render-runtime@8.95.1/public/@types/vtex.render-runtime"
+    "vtex.document-field": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.document-field@0.1.0/public/@types/vtex.document-field",
+    "vtex.order-manager": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.order-manager@0.8.2/public/@types/vtex.order-manager",
+    "vtex.order-profile": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.order-profile@0.2.0/public/@types/vtex.order-profile",
+    "vtex.phone-field": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.phone-field@0.1.3/public/@types/vtex.phone-field",
+    "vtex.render-runtime": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.render-runtime@8.96.1/public/@types/vtex.render-runtime",
+    "vtex.styleguide": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.styleguide@9.112.26/public/@types/vtex.styleguide"
   }
 }
