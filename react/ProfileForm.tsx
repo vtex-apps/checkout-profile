@@ -12,6 +12,7 @@ import { Input, Checkbox, Button, ButtonPlain, IconEdit } from 'vtex.styleguide'
 import { useRuntime } from 'vtex.render-runtime'
 import { PhoneField, PhoneContext, rules } from 'vtex.phone-field'
 import { DocumentField } from 'vtex.document-field'
+import { Router } from 'vtex.checkout-container'
 
 const messages = defineMessages({
   emailInfo: {
@@ -139,6 +140,7 @@ const ProfileForm: React.FC = () => {
   } = OrderProfile.useOrderProfile()
   const { navigate } = useRuntime()
   const intl = useIntl()
+  const history = Router.useHistory()
 
   const [loading, setLoading] = useState(false)
   const [submitFailed, setSubmitFailed] = useState(false)
@@ -323,6 +325,7 @@ const ProfileForm: React.FC = () => {
       if (profileUpdateSuccess && clientPreferencesUpdateSuccess) {
         // should go to the next step. maybe call a function exposed
         // in the checkout-container context
+        history.push('/shipping')
       } else {
         setSubmitFailed(true)
       }
