@@ -170,9 +170,9 @@ shallow-equal@^1.2.1:
   version "0.4.0"
   resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.checkout-container@0.4.0/public/@types/vtex.checkout-container#5510b1ebb8bc8ae565371ee70149ceee5ce1e321"
 
-"vtex.document-field@https://lucas--checkoutio.myvtex.com/_v/private/typings/linked/v1/vtex.document-field@0.1.0+build1589915957/public/@types/vtex.document-field":
+"vtex.document-field@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.document-field@0.1.0/public/@types/vtex.document-field":
   version "0.1.0"
-  resolved "https://lucas--checkoutio.myvtex.com/_v/private/typings/linked/v1/vtex.document-field@0.1.0+build1589915957/public/@types/vtex.document-field#a4bd391b32decdd02065a05b5791ccbc579951ae"
+  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.document-field@0.1.0/public/@types/vtex.document-field#dc2b3ee50609ef7abb3ec997a547e14e34d0c61a"
 
 "vtex.order-manager@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.order-manager@0.8.4/public/@types/vtex.order-manager":
   version "0.8.4"
