@@ -323,8 +323,6 @@ const ProfileForm: React.FC = () => {
       ])
 
       if (profileUpdateSuccess && clientPreferencesUpdateSuccess) {
-        // should go to the next step. maybe call a function exposed
-        // in the checkout-container context
         history.push('/shipping')
       } else {
         setSubmitFailed(true)
