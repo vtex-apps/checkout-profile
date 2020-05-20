@@ -443,6 +443,7 @@ const ProfileForm: React.FC = () => {
         <div className="mv7">
           {orderForm.userProfileId == null && (
             <Checkbox
+              id="save-personal-info"
               label={intl.formatMessage(messages.saveInfoLabel)}
               checked={persistInfo}
               onChange={handlePersistInfoChange}
@@ -450,6 +451,7 @@ const ProfileForm: React.FC = () => {
           )}
           <div className="mt6">
             <Checkbox
+              id="optin-newsletter"
               label={intl.formatMessage(messages.newsletterOptinLabel)}
               checked={optInNewsletter}
               onChange={handleOptinNewsletterChange}
