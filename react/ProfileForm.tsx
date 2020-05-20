@@ -84,6 +84,7 @@ type ProfileAction = { field: keyof ProfileState } & (
       error: MessageDescriptor | undefined
     }
   | { type: 'blur' }
+  | { type: 'focus' }
 )
 
 const profileReducer = (
@@ -98,7 +99,6 @@ const profileReducer = (
         ...profile[field],
         value,
         isValid: isValid ?? profile[field].isValid,
-        blur: false,
       }
 
       return {
@@ -124,6 +124,12 @@ const profileReducer = (
           ...profile[field],
           blur: true,
         },
+      }
+    }
+    case 'focus': {
+      return {
+        ...profile,
+        [field]: { ...profile[field], focus: true },
       }
     }
     default: {
@@ -259,6 +265,13 @@ const ProfileForm: React.FC = () => {
     })
   }
 
+  const handleFocus: React.FocusEventHandler<HTMLInputElement> = evt => {
+    dispatch({
+      type: 'focus',
+      field: evt.target.name as keyof ProfileState,
+    })
+  }
+
   const handlePhoneBlur: React.FocusEventHandler<HTMLInputElement> = () => {
     // this timeout is needed because the phone field component focus
     // the listbox button after the change handler, so we need to wait
@@ -386,6 +399,7 @@ const ProfileForm: React.FC = () => {
               }
               onChange={handleChange}
               onBlur={handleBlur}
+              onFocus={handleFocus}
             />
           </div>
           <div className="w-100 mt6 mt0-ns ml0 ml5-ns">
@@ -401,6 +415,7 @@ const ProfileForm: React.FC = () => {
               }
               onChange={handleChange}
               onBlur={handleBlur}
+              onFocus={handleFocus}
             />
           </div>
         </div>
@@ -414,6 +429,7 @@ const ProfileForm: React.FC = () => {
                 name="phone"
                 onChange={handlePhoneChange}
                 onBlur={handlePhoneBlur}
+                onFocus={handleFocus}
                 errorMessage={
                   (profileData.phone.blur &&
                     !profileData.phone.isValid &&
@@ -437,6 +453,7 @@ const ProfileForm: React.FC = () => {
               }
               onChange={handleDocumentChange}
               onBlur={handleBlur}
+              onFocus={handleFocus}
             />
           </div>
         </div>
