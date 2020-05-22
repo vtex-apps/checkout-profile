@@ -6,8 +6,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Fixed
-- Redirect to `/shipping` not made after profile completion.
-- Click on checkboxes label (save info and newsletter opt-in) didn't toggle the checkbox state.
+- Redirect to `/shipping` after profile completion.
+- Click on checkboxes label (save info and newsletter opt-in) to toggle the checkbox state.
 
 ## [0.1.0] - 2020-03-30
 ### Added
