@@ -386,7 +386,7 @@ const ProfileForm: React.FC = () => {
       </div>
       <form className="mt6" onSubmit={handleSubmit}>
         <div className="flex flex-column flex-row-ns">
-          <div className="w-100">
+          <div className="w-100" data-testid="profile-first-name-wrapper">
             <Input
               label={intl.formatMessage(messages.firstNameLabel)}
               name="firstName"
@@ -402,7 +402,10 @@ const ProfileForm: React.FC = () => {
               onFocus={handleFocus}
             />
           </div>
-          <div className="w-100 mt6 mt0-ns ml0 ml5-ns">
+          <div
+            className="w-100 mt6 mt0-ns ml0 ml5-ns"
+            data-testid="profile-last-name-wrapper"
+          >
             <Input
               label={intl.formatMessage(messages.lastNameLabel)}
               name="lastName"
@@ -420,7 +423,11 @@ const ProfileForm: React.FC = () => {
           </div>
         </div>
         <div className="flex flex-column flex-row-ns mt6">
-          <div className="w-100" ref={phoneContainerRef}>
+          <div
+            className="w-100"
+            ref={phoneContainerRef}
+            data-testid="profile-phone-wrapper"
+          >
             <PhoneContext.PhoneContextProvider rules={rules}>
               <PhoneField
                 ref={phoneInputRef}
@@ -439,7 +446,10 @@ const ProfileForm: React.FC = () => {
               />
             </PhoneContext.PhoneContextProvider>
           </div>
-          <div className="w-100 mt6 mt0-ns ml0 ml5-ns">
+          <div
+            className="w-100 mt6 mt0-ns ml0 ml5-ns"
+            data-testid="profile-document-wrapper"
+          >
             <DocumentField
               document={profileData.document.value}
               documentType={profileData.documentType.value}
@@ -475,17 +485,19 @@ const ProfileForm: React.FC = () => {
             />
           </div>
         </div>
-        <Button
-          size="large"
-          type="submit"
-          block
-          disabled={loading}
-          isLoading={loading}
-        >
-          <span className="f5">
-            {intl.formatMessage(messages.continueButtonLabel)}
-          </span>
-        </Button>
+        <div data-testid="profile-continue-wrapper">
+          <Button
+            size="large"
+            type="submit"
+            block
+            disabled={loading}
+            isLoading={loading}
+          >
+            <span className="f5">
+              {intl.formatMessage(messages.continueButtonLabel)}
+            </span>
+          </Button>
+        </div>
         {submitFailed && (
           <span className="dib mt5 t-auxiliary c-danger">
             {intl.formatMessage(messages.submitErrorMessage)}
