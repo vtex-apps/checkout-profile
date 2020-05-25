@@ -12,6 +12,7 @@ import { Input, Checkbox, Button, ButtonPlain, IconEdit } from 'vtex.styleguide'
 import { useRuntime } from 'vtex.render-runtime'
 import { PhoneField, PhoneContext, rules } from 'vtex.phone-field'
 import { DocumentField } from 'vtex.document-field'
+import { Router } from 'vtex.checkout-container'
 
 const messages = defineMessages({
   emailInfo: {
@@ -83,6 +84,7 @@ type ProfileAction = { field: keyof ProfileState } & (
       error: MessageDescriptor | undefined
     }
   | { type: 'blur' }
+  | { type: 'focus' }
 )
 
 const profileReducer = (
@@ -97,7 +99,6 @@ const profileReducer = (
         ...profile[field],
         value,
         isValid: isValid ?? profile[field].isValid,
-        blur: false,
       }
 
       return {
@@ -125,6 +126,12 @@ const profileReducer = (
         },
       }
     }
+    case 'focus': {
+      return {
+        ...profile,
+        [field]: { ...profile[field], focus: true },
+      }
+    }
     default: {
       return profile
     }
@@ -139,6 +146,7 @@ const ProfileForm: React.FC = () => {
   } = OrderProfile.useOrderProfile()
   const { navigate } = useRuntime()
   const intl = useIntl()
+  const history = Router.useHistory()
 
   const [loading, setLoading] = useState(false)
   const [submitFailed, setSubmitFailed] = useState(false)
@@ -257,6 +265,13 @@ const ProfileForm: React.FC = () => {
     })
   }
 
+  const handleFocus: React.FocusEventHandler<HTMLInputElement> = evt => {
+    dispatch({
+      type: 'focus',
+      field: evt.target.name as keyof ProfileState,
+    })
+  }
+
   const handlePhoneBlur: React.FocusEventHandler<HTMLInputElement> = () => {
     // this timeout is needed because the phone field component focus
     // the listbox button after the change handler, so we need to wait
@@ -321,8 +336,7 @@ const ProfileForm: React.FC = () => {
       ])
 
       if (profileUpdateSuccess && clientPreferencesUpdateSuccess) {
-        // should go to the next step. maybe call a function exposed
-        // in the checkout-container context
+        history.push('/shipping')
       } else {
         setSubmitFailed(true)
       }
@@ -385,6 +399,7 @@ const ProfileForm: React.FC = () => {
               }
               onChange={handleChange}
               onBlur={handleBlur}
+              onFocus={handleFocus}
             />
           </div>
           <div className="w-100 mt6 mt0-ns ml0 ml5-ns">
@@ -400,6 +415,7 @@ const ProfileForm: React.FC = () => {
               }
               onChange={handleChange}
               onBlur={handleBlur}
+              onFocus={handleFocus}
             />
           </div>
         </div>
@@ -413,6 +429,7 @@ const ProfileForm: React.FC = () => {
                 name="phone"
                 onChange={handlePhoneChange}
                 onBlur={handlePhoneBlur}
+                onFocus={handleFocus}
                 errorMessage={
                   (profileData.phone.blur &&
                     !profileData.phone.isValid &&
@@ -436,12 +453,14 @@ const ProfileForm: React.FC = () => {
               }
               onChange={handleDocumentChange}
               onBlur={handleBlur}
+              onFocus={handleFocus}
             />
           </div>
         </div>
         <div className="mv7">
           {orderForm.userProfileId == null && (
             <Checkbox
+              id="save-personal-info"
               label={intl.formatMessage(messages.saveInfoLabel)}
               checked={persistInfo}
               onChange={handlePersistInfoChange}
@@ -449,6 +468,7 @@ const ProfileForm: React.FC = () => {
           )}
           <div className="mt6">
             <Checkbox
+              id="optin-newsletter"
               label={intl.formatMessage(messages.newsletterOptinLabel)}
               checked={optInNewsletter}
               onChange={handleOptinNewsletterChange}
