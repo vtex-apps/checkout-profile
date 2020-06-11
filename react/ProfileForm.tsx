@@ -345,10 +345,10 @@ const ProfileForm: React.FC = () => {
         history.push('/shipping')
       } else {
         setSubmitFailed(true)
+        setLoading(false)
       }
     } catch (err) {
       setSubmitFailed(true)
-    } finally {
       setLoading(false)
     }
   }
