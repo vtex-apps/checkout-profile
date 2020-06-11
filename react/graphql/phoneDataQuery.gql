@@ -1,0 +1,10 @@
+query PhoneData {
+  countriesData: allCountriesData {
+    countryISO
+    phone {
+      countryCode
+      mask
+      pattern
+    }
+  }
+}

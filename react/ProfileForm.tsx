@@ -4,15 +4,19 @@ import React, {
   useRef,
   useReducer,
   useEffect,
+  useMemo,
 } from 'react'
 import { defineMessages, useIntl, MessageDescriptor } from 'react-intl'
 import { OrderForm } from 'vtex.order-manager'
 import { OrderProfile } from 'vtex.order-profile'
 import { Input, Checkbox, Button, ButtonPlain, IconEdit } from 'vtex.styleguide'
 import { useRuntime } from 'vtex.render-runtime'
-import { PhoneField, PhoneContext, rules } from 'vtex.phone-field'
+import { PhoneField, PhoneContext } from 'vtex.phone-field'
 import { DocumentField } from 'vtex.document-field'
 import { Router } from 'vtex.checkout-container'
+import { useQuery } from 'react-apollo'
+
+import phoneDataQuery from './graphql/phoneDataQuery.gql'
 
 const messages = defineMessages({
   emailInfo: {
@@ -147,6 +151,8 @@ const ProfileForm: React.FC = () => {
   const { navigate } = useRuntime()
   const intl = useIntl()
   const history = Router.useHistory()
+
+  const { data } = useQuery(phoneDataQuery)
 
   const [loading, setLoading] = useState(false)
   const [submitFailed, setSubmitFailed] = useState(false)
@@ -371,6 +377,15 @@ const ProfileForm: React.FC = () => {
     }
   }
 
+  const phoneRules = useMemo(
+    () =>
+      data?.countriesData.map(({ countryISO, phone }: any) => ({
+        countryISO,
+        ...phone,
+      })) ?? [],
+    [data]
+  )
+
   return (
     <>
       <div>
@@ -424,11 +439,11 @@ const ProfileForm: React.FC = () => {
         </div>
         <div className="flex flex-column flex-row-ns mt6">
           <div
-            className="w-100"
+            className="w-100 flex-auto"
             ref={phoneContainerRef}
             data-testid="profile-phone-wrapper"
           >
-            <PhoneContext.PhoneContextProvider rules={rules}>
+            <PhoneContext.PhoneContextProvider rules={phoneRules}>
               <PhoneField
                 ref={phoneInputRef}
                 label={intl.formatMessage(messages.phoneLabel)}
@@ -437,6 +452,7 @@ const ProfileForm: React.FC = () => {
                 onChange={handlePhoneChange}
                 onBlur={handlePhoneBlur}
                 onFocus={handleFocus}
+                disabled={!data}
                 errorMessage={
                   (profileData.phone.blur &&
                     !profileData.phone.isValid &&
@@ -447,7 +463,7 @@ const ProfileForm: React.FC = () => {
             </PhoneContext.PhoneContextProvider>
           </div>
           <div
-            className="w-100 mt6 mt0-ns ml0 ml5-ns"
+            className="w-100 flex-auto mt6 mt0-ns ml0 ml5-ns"
             data-testid="profile-document-wrapper"
           >
             <DocumentField
