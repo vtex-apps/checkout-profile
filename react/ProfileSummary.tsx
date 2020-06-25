@@ -26,6 +26,7 @@ const ProfileSummary: React.FC = () => {
           <div className="ml4">
             <ButtonPlain
               href={`${rootPath}/checkout/changeToAnonymousUser/${orderForm.id}`}
+              testId="profile-logout-button"
             >
               <FormattedMessage id="store/checkout-profile-logout-label" />
             </ButtonPlain>
