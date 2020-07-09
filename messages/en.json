@@ -1,5 +1,6 @@
 {
   "store/checkout-profile-email-info": "Fill info for",
+  "store/checkout-profile-logout-label": "Not you? Logout",
   "store/checkout-profile-first-name-label": "First name",
   "store/checkout-profile-last-name-label": "Last name",
   "store/checkout-profile-phone-label": "Phone number",

@@ -1,5 +1,6 @@
 {
   "store/checkout-profile-email-info": "Preencher informações para",
+  "store/checkout-profile-logout-label": "Não é você? Sair",
   "store/checkout-profile-first-name-label": "Nome",
   "store/checkout-profile-last-name-label": "Sobrenome",
   "store/checkout-profile-phone-label": "Número de telefone",
