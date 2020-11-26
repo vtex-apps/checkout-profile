@@ -1,5 +1,7 @@
 # Checkout Profile
 
+⚠️ **This is an ongoing, unsupported, unfinished and undocumented project. We do not guarantee any results after installation.** ⚠️
+
 This app contains a Profile Form, and a Profile Preview component, used in the checkout to
 update the information inside the `orderForm`.
 
