@@ -1,0 +1,15 @@
+{
+  "store/checkout-profile-email-info": "املأ المعلومات لـ",
+  "store/checkout-profile-logout-label": "هذا ليس أنت؟ سجل خروجك",
+  "store/checkout-profile-first-name-label": "الإسم الأول",
+  "store/checkout-profile-last-name-label": "الإسم الأخير",
+  "store/checkout-profile-phone-label": "رقم الهاتف",
+  "store/checkout-profile-document-label": "الوثيقة",
+  "store/checkout-profile-save-info-label": "احفظ معلوماتي للمشتريات المستقبلية.",
+  "store/checkout-profile-newsletter-optin-label": "أريد تلقي الرسائل الإخبارية.",
+  "store/checkout-profile-continue-button-label": "مواصلة",
+  "store/checkout-profile-field-required-message": "حقل مطلوب",
+  "store/checkout-profile-invalid-phone-message": "رقم هاتف غير صالح",
+  "store/checkout-profile-invalid-document-message": "رقم مستند غير صالح",
+  "store/checkout-profile-submit-error-message": "حدث خطأ عند إرسال البيانات الخاصة بك. حاول مرة اخرى."
+}
