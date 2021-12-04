@@ -1,0 +1,15 @@
+{
+  "store/checkout-profile-email-info": "Izpolni informacije za",
+  "store/checkout-profile-logout-label": "To niste vi? Odjavite se",
+  "store/checkout-profile-first-name-label": "Ime",
+  "store/checkout-profile-last-name-label": "Priimek",
+  "store/checkout-profile-phone-label": "Telefonska številka",
+  "store/checkout-profile-document-label": "Dokument",
+  "store/checkout-profile-save-info-label": "Shrani moje podatke za prihodnje nakupe.",
+  "store/checkout-profile-newsletter-optin-label": "Rad bi prejemal e-novice.",
+  "store/checkout-profile-continue-button-label": "Nadaljuj",
+  "store/checkout-profile-field-required-message": "To polje je obvezno",
+  "store/checkout-profile-invalid-phone-message": "Neveljavna telefonska številka",
+  "store/checkout-profile-invalid-document-message": "Neveljavna številka dokumenta",
+  "store/checkout-profile-submit-error-message": "Pri oddaji vaših podatkov je prišlo do napake. Prosimo, poskusite ponovno."
+}

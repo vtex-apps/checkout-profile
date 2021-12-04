@@ -1,0 +1,15 @@
+{
+  "store/checkout-profile-email-info": "情報を入力",
+  "store/checkout-profile-logout-label": "自分ではありませんか？ ログアウトしてください",
+  "store/checkout-profile-first-name-label": "名前",
+  "store/checkout-profile-last-name-label": "名字",
+  "store/checkout-profile-phone-label": "電話番号",
+  "store/checkout-profile-document-label": "ドキュメント",
+  "store/checkout-profile-save-info-label": "今後の購入で使う自分の情報を保存してください。",
+  "store/checkout-profile-newsletter-optin-label": "ニュースレターの受け取りを希望します。",
+  "store/checkout-profile-continue-button-label": "続ける",
+  "store/checkout-profile-field-required-message": "フィールドは必須",
+  "store/checkout-profile-invalid-phone-message": "無効な電話番号",
+  "store/checkout-profile-invalid-document-message": "ドキュメント番号が無効です。",
+  "store/checkout-profile-submit-error-message": "データを提出する時にエラーが発生しました。もう一度やり直してください。"
+}

@@ -1,0 +1,15 @@
+{
+  "store/checkout-profile-email-info": "Συμπλήρωση πληροφοριών για",
+  "store/checkout-profile-logout-label": "Δεν είστε εσείς; Αποσύνδεση",
+  "store/checkout-profile-first-name-label": "Όνομα",
+  "store/checkout-profile-last-name-label": "Επώνυμο",
+  "store/checkout-profile-phone-label": "Τηλεφωνικός αριθμός",
+  "store/checkout-profile-document-label": "Έγγραφο",
+  "store/checkout-profile-save-info-label": "Αποθηκεύστε τις πληροφορίες μου για μελλοντικές αγορές.",
+  "store/checkout-profile-newsletter-optin-label": "Επιθυμώ να λαμβάνω το newsletter.",
+  "store/checkout-profile-continue-button-label": "Συνεχίστε",
+  "store/checkout-profile-field-required-message": "Απαιτούμενο πεδίο",
+  "store/checkout-profile-invalid-phone-message": "Άκυρος αριθμός τηλεφώνου",
+  "store/checkout-profile-invalid-document-message": "Άκυρος αριθμός εγγράφου",
+  "store/checkout-profile-submit-error-message": "Προέκυψε σφάλμα κατά την υποβολή των δεδομένων σας. Δοκιμάστε ξανά."
+}

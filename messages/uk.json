@@ -1,0 +1,15 @@
+{
+  "store/checkout-profile-email-info": "Заповніть інформацію для",
+  "store/checkout-profile-logout-label": "Не ваш акаунт? Вийти",
+  "store/checkout-profile-first-name-label": "Ім’я",
+  "store/checkout-profile-last-name-label": "Прізвище",
+  "store/checkout-profile-phone-label": "Номер телефону",
+  "store/checkout-profile-document-label": "Документ",
+  "store/checkout-profile-save-info-label": "Збережіть мою інформацію для майбутніх покупок.",
+  "store/checkout-profile-newsletter-optin-label": "Я хочу отримувати розсилку новин.",
+  "store/checkout-profile-continue-button-label": "Продовжити",
+  "store/checkout-profile-field-required-message": "Обов’язкове поле",
+  "store/checkout-profile-invalid-phone-message": "Неправильний номер телефону",
+  "store/checkout-profile-invalid-document-message": "Неправильний номер документа",
+  "store/checkout-profile-submit-error-message": "Під час відправлення ваших даних сталася помилка. Повторіть спробу."
+}

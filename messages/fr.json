@@ -1,0 +1,15 @@
+{
+  "store/checkout-profile-email-info": "Compléter les informations pour",
+  "store/checkout-profile-logout-label": "Ce n’est pas vous? Déconnectez-vous",
+  "store/checkout-profile-first-name-label": "Prénom",
+  "store/checkout-profile-last-name-label": "Nom",
+  "store/checkout-profile-phone-label": "Numéro de téléphone",
+  "store/checkout-profile-document-label": "Pièce d’identité",
+  "store/checkout-profile-save-info-label": "Enregistrez mes informations pour de futurs achats.",
+  "store/checkout-profile-newsletter-optin-label": "Je souhaite recevoir la newsletter.",
+  "store/checkout-profile-continue-button-label": "Continuer",
+  "store/checkout-profile-field-required-message": "Le champ est obligatoire",
+  "store/checkout-profile-invalid-phone-message": "Numéro de téléphone non valable",
+  "store/checkout-profile-invalid-document-message": "Numéro de document non valable",
+  "store/checkout-profile-submit-error-message": "Une erreur s’est produite lors de la soumission de vos données. Veuillez réessayer."
+}

@@ -1,0 +1,15 @@
+{
+  "store/checkout-profile-email-info": "Completează informații pentru",
+  "store/checkout-profile-logout-label": "Nu ești tu? Deconectează-te",
+  "store/checkout-profile-first-name-label": "Prenume",
+  "store/checkout-profile-last-name-label": "Nume",
+  "store/checkout-profile-phone-label": "Număr de telefon",
+  "store/checkout-profile-document-label": "Document",
+  "store/checkout-profile-save-info-label": "Salvează-mi informațiile pentru achiziții viitoare.",
+  "store/checkout-profile-newsletter-optin-label": "Vreau să mă abonez la newsletter.",
+  "store/checkout-profile-continue-button-label": "Continuă",
+  "store/checkout-profile-field-required-message": "Câmpul este necesar",
+  "store/checkout-profile-invalid-phone-message": "Număr de telefon invalid",
+  "store/checkout-profile-invalid-document-message": "Număr document invalid",
+  "store/checkout-profile-submit-error-message": "A apărut o eroare în transmiterea datelor tale. Te rugăm să încerci din nou."
+}
