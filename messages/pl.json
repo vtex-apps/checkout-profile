@@ -1,0 +1,15 @@
+{
+  "store/checkout-profile-email-info": "Podaj informacje dla",
+  "store/checkout-profile-logout-label": "To nie Ty? Wyloguj się",
+  "store/checkout-profile-first-name-label": "Imię",
+  "store/checkout-profile-last-name-label": "Nazwisko",
+  "store/checkout-profile-phone-label": "Numer telefonu",
+  "store/checkout-profile-document-label": "Dokument",
+  "store/checkout-profile-save-info-label": "Zapisz moje informacje na potrzebę przyszłych zakupów.",
+  "store/checkout-profile-newsletter-optin-label": "Chcę otrzymywać biuletyn.",
+  "store/checkout-profile-continue-button-label": "Kontynuuj",
+  "store/checkout-profile-field-required-message": "To pole jest wymagane",
+  "store/checkout-profile-invalid-phone-message": "Nieprawidłowy numer telefonu",
+  "store/checkout-profile-invalid-document-message": "Nieprawidłowy numer dokumentu",
+  "store/checkout-profile-submit-error-message": "Wystąpił błąd podczas przesyłania Twoich danych. Spróbuj ponownie."
+}
