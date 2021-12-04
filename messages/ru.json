@@ -1,0 +1,15 @@
+{
+  "store/checkout-profile-email-info": "Заполните информацию для",
+  "store/checkout-profile-logout-label": "Не ваш аккаунт? Выйти",
+  "store/checkout-profile-first-name-label": "Имя",
+  "store/checkout-profile-last-name-label": "Фамилия",
+  "store/checkout-profile-phone-label": "Номер телефона",
+  "store/checkout-profile-document-label": "Документ",
+  "store/checkout-profile-save-info-label": "Сохраните мою информацию для будущих покупок.",
+  "store/checkout-profile-newsletter-optin-label": "Я хочу получать новостную рассылку.",
+  "store/checkout-profile-continue-button-label": "Продолжить",
+  "store/checkout-profile-field-required-message": "Обязательное поле",
+  "store/checkout-profile-invalid-phone-message": "Неправильный номер телефона",
+  "store/checkout-profile-invalid-document-message": "Неправильный номер документа",
+  "store/checkout-profile-submit-error-message": "При отправке ваших данных произошла ошибка. Повторите попытку."
+}
