@@ -1,0 +1,15 @@
+{
+  "store/checkout-profile-email-info": "Vyplňte údaje pre",
+  "store/checkout-profile-logout-label": "Nie ste to vy? Odhláste sa",
+  "store/checkout-profile-first-name-label": "Krstné meno",
+  "store/checkout-profile-last-name-label": "Priezvisko",
+  "store/checkout-profile-phone-label": "Telefónne číslo",
+  "store/checkout-profile-document-label": "Dokument totožnosti",
+  "store/checkout-profile-save-info-label": "Uložiť moje údaje na budúce nákupy.",
+  "store/checkout-profile-newsletter-optin-label": "Chcem dostávať informačný bulletin.",
+  "store/checkout-profile-continue-button-label": "Pokračovať",
+  "store/checkout-profile-field-required-message": "Pole je povinné",
+  "store/checkout-profile-invalid-phone-message": "Neplatné telefónne číslo",
+  "store/checkout-profile-invalid-document-message": "Neplatné číslo dokladu",
+  "store/checkout-profile-submit-error-message": "Pri odosielaní vašich údajov sa vyskytla chyba. Skúste to znova."
+}
