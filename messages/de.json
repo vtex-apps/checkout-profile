@@ -1,0 +1,15 @@
+{
+  "store/checkout-profile-email-info": "Infos ausfüllen für",
+  "store/checkout-profile-logout-label": "Sind Sie es nicht? Abmelden",
+  "store/checkout-profile-first-name-label": "Vorname",
+  "store/checkout-profile-last-name-label": "Nachname",
+  "store/checkout-profile-phone-label": "Rufnummer",
+  "store/checkout-profile-document-label": "Dokument",
+  "store/checkout-profile-save-info-label": "Speichern Sie meine Daten für zukünftige Einkäufe.",
+  "store/checkout-profile-newsletter-optin-label": "Ich möchte den Newsletter erhalten.",
+  "store/checkout-profile-continue-button-label": "Weiter",
+  "store/checkout-profile-field-required-message": "Feld ist erforderlich",
+  "store/checkout-profile-invalid-phone-message": "Ungültige Rufnummer",
+  "store/checkout-profile-invalid-document-message": "Ungültige Dokumentnummer",
+  "store/checkout-profile-submit-error-message": "Beim Übertragen Ihrer Daten ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut."
+}
