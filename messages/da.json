@@ -1,0 +1,15 @@
+{
+  "store/checkout-profile-email-info": "Udfyld info for",
+  "store/checkout-profile-logout-label": "Ikke dig? Log ud",
+  "store/checkout-profile-first-name-label": "Fornavn",
+  "store/checkout-profile-last-name-label": "Efternavn",
+  "store/checkout-profile-phone-label": "Telefonnummer",
+  "store/checkout-profile-document-label": "Dokument",
+  "store/checkout-profile-save-info-label": "Gem mine oplysninger til fremtidige køb.",
+  "store/checkout-profile-newsletter-optin-label": "Jeg ønsker at modtage nyhedsbrevet.",
+  "store/checkout-profile-continue-button-label": "Fortsæt",
+  "store/checkout-profile-field-required-message": "Felt er påkrævet",
+  "store/checkout-profile-invalid-phone-message": "Ugyldigt telefonnummer",
+  "store/checkout-profile-invalid-document-message": "Ugyldigt dokumentnummer",
+  "store/checkout-profile-submit-error-message": "Der opstod en fejl under indsendelse af dine data. Prøv igen."
+}
