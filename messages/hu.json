@@ -1,0 +1,15 @@
+{
+  "store/checkout-profile-email-info": "Adja meg a következő adatokat:",
+  "store/checkout-profile-logout-label": "Nem Ön az? Kijelentkezés",
+  "store/checkout-profile-first-name-label": "Utónév",
+  "store/checkout-profile-last-name-label": "Vezetéknév",
+  "store/checkout-profile-phone-label": "Telefonszám",
+  "store/checkout-profile-document-label": "Dokumentum",
+  "store/checkout-profile-save-info-label": "Adatok elmentése a jövőbeli vásárlásokhoz.",
+  "store/checkout-profile-newsletter-optin-label": "Hírleveleket szeretnék kapni.",
+  "store/checkout-profile-continue-button-label": "Folytatás",
+  "store/checkout-profile-field-required-message": "A mező kitöltése kötelező",
+  "store/checkout-profile-invalid-phone-message": "Érvénytelen telefonszám",
+  "store/checkout-profile-invalid-document-message": "Érvénytelen dokumentumszám",
+  "store/checkout-profile-submit-error-message": "Hiba történt az adatok elküldésekor. Próbálja újra."
+}
