@@ -1,0 +1,15 @@
+{
+  "store/checkout-profile-email-info": "Fyll info för",
+  "store/checkout-profile-logout-label": "Inte du? Logga ut",
+  "store/checkout-profile-first-name-label": "Förnamn",
+  "store/checkout-profile-last-name-label": "Efternamn",
+  "store/checkout-profile-phone-label": "Telefonnummer",
+  "store/checkout-profile-document-label": "Dokument",
+  "store/checkout-profile-save-info-label": "Spara min info för framtida köp.",
+  "store/checkout-profile-newsletter-optin-label": "Jag vill ta emot nyhetsbrev.",
+  "store/checkout-profile-continue-button-label": "Fortsätt",
+  "store/checkout-profile-field-required-message": "Fältet är obligatoriskt",
+  "store/checkout-profile-invalid-phone-message": "Ogiltigt telefonnummer",
+  "store/checkout-profile-invalid-document-message": "Ogiltigt dokumentnummer",
+  "store/checkout-profile-submit-error-message": "Ett fel inträffade när du skickade in dina uppgifter. Vänligen försök igen."
+}
