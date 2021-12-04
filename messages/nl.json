@@ -1,0 +1,15 @@
+{
+  "store/checkout-profile-email-info": "Vul info voor",
+  "store/checkout-profile-logout-label": "Ben jij het niet? Log uit",
+  "store/checkout-profile-first-name-label": "Voornaam",
+  "store/checkout-profile-last-name-label": "Achternaam",
+  "store/checkout-profile-phone-label": "Telefoonnummer",
+  "store/checkout-profile-document-label": "Document",
+  "store/checkout-profile-save-info-label": "Bewaar mijn info voor toekomstige aankopen.",
+  "store/checkout-profile-newsletter-optin-label": "Ik wil de nieuwsbrief ontvangen.",
+  "store/checkout-profile-continue-button-label": "Doorgaan",
+  "store/checkout-profile-field-required-message": "Veld is verplicht",
+  "store/checkout-profile-invalid-phone-message": "Ongeldig telefoonnummer",
+  "store/checkout-profile-invalid-document-message": "Ongeldig documentnummer",
+  "store/checkout-profile-submit-error-message": "Er is een fout opgetreden bij het indienen van uw gegevens. Probeer opnieuw."
+}
