@@ -1,0 +1,15 @@
+{
+  "store/checkout-profile-email-info": "Emplena les dades de",
+  "store/checkout-profile-logout-label": "No ets tu? Tanca la sessió",
+  "store/checkout-profile-first-name-label": "Nom",
+  "store/checkout-profile-last-name-label": "Cognoms",
+  "store/checkout-profile-phone-label": "Número de telèfon",
+  "store/checkout-profile-document-label": "Document",
+  "store/checkout-profile-save-info-label": "Desa la meva informació per a compres futures.",
+  "store/checkout-profile-newsletter-optin-label": "Vull rebre el butlletí d'informació.",
+  "store/checkout-profile-continue-button-label": "Continua",
+  "store/checkout-profile-field-required-message": "Aquest camp és obligatori",
+  "store/checkout-profile-invalid-phone-message": "El número de telèfon mòbil no és vàlid",
+  "store/checkout-profile-invalid-document-message": "El número del document no és vàlid",
+  "store/checkout-profile-submit-error-message": "S'ha produït un error en enviar les teves dades. Torna-ho a provar."
+}
