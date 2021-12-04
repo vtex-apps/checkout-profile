@@ -1,0 +1,15 @@
+{
+  "store/checkout-profile-email-info": "Täytä tiedot",
+  "store/checkout-profile-logout-label": "Et sinä? Kirjaudu ulos",
+  "store/checkout-profile-first-name-label": "Etunimi",
+  "store/checkout-profile-last-name-label": "Sukunimi",
+  "store/checkout-profile-phone-label": "Puhelinnumero",
+  "store/checkout-profile-document-label": "Asiakirja",
+  "store/checkout-profile-save-info-label": "Tallenna tietoni tulevia ostoksia varten.",
+  "store/checkout-profile-newsletter-optin-label": "Haluan saada uutiskirjeen.",
+  "store/checkout-profile-continue-button-label": "Jatka",
+  "store/checkout-profile-field-required-message": "Pakollinen kenttä",
+  "store/checkout-profile-invalid-phone-message": "Virheellinen puhelinnumero",
+  "store/checkout-profile-invalid-document-message": "Virheellinen asiakirjan numero",
+  "store/checkout-profile-submit-error-message": "Lähetettäessä tietojasi tapahtui virhe. Yritä uudelleen."
+}
