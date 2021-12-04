@@ -1,0 +1,15 @@
+{
+  "store/checkout-profile-email-info": "정보 채우기",
+  "store/checkout-profile-logout-label": "본인이 아닌가요? 로그아웃",
+  "store/checkout-profile-first-name-label": "이름",
+  "store/checkout-profile-last-name-label": "성",
+  "store/checkout-profile-phone-label": "전화번호",
+  "store/checkout-profile-document-label": "문서",
+  "store/checkout-profile-save-info-label": "나중에 구매할 수 있도록 내 정보를 저장합니다.",
+  "store/checkout-profile-newsletter-optin-label": "뉴스레터를 받고 싶습니다.",
+  "store/checkout-profile-continue-button-label": "계속",
+  "store/checkout-profile-field-required-message": "필드가 필요합니다.",
+  "store/checkout-profile-invalid-phone-message": "잘못된 전화 번호",
+  "store/checkout-profile-invalid-document-message": "잘못된 문서 번호",
+  "store/checkout-profile-submit-error-message": "데이터를 제출할 때 오류가 발생했습니다. 다시 시도하세요."
+}
